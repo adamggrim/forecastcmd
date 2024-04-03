@@ -8,6 +8,8 @@ setup(
     keywords='weather forecast celsius fahrenheit',
     license='MIT',
     packages=find_packages(),
+    include_package_data=True,
+    package_data={'forecastcmd': ['data/zip_codes_forecast_urls.json']},
     install_requires=[
         'beautifulsoup4',
         'requests',

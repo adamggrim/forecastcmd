@@ -12,6 +12,10 @@ from forecastcmd.validation import HTMLElementNotFoundError
 def parse_args() -> Optional[str]:
     """
     Parses command-line arguments for a temperature scale specification.
+
+    Returns:
+        temp_scale (Optional[str]): A string representing a specified temperature 
+            scale, otherwise None.
     """
     parser = argparse.ArgumentParser(description='Make an optional '
                                      'specification for temperature scale.')
