@@ -5,7 +5,7 @@ ANY_OTHER_ZIP_STR = 'Any other zip code? (5 digits):'
 CELSIUS_STRS = {'celsius', 'c'}
 
 # String printed when asking the user to enter a temperature scale
-ENTER_TEMP_SCALE_STR = 'Enter a temperature scale (Fahrenheit [F] or Celsius [C]):'
+ENTER_TEMP_SCALE_STR = 'Enter a temperature scale (Celsius [C] or Fahrenheit [F]):'
 
 # String printed when the previous temperature scale input was invalid
 ENTER_VALID_TEMP_SCALE_STR = 'Please enter Celsius (C) or Fahrenheit (F):'

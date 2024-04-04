@@ -12,49 +12,85 @@
 
 - `beautifulsoup4`: For parsing HTML data retrieved from weather.gov
 - `requests`: For making HTTP requests to retrieve forecast data from weather.gov
-- `setuptools`: For implementing command line functionality
+- `setuptools`: For building and installing the `forecastcmd` package, and for implementing command-line functionality using entry points
 
 You can install these dependencies using pip:
 
-`pip install requests`
 `pip install beautifulsoup4`
+
+`pip install requests`
+
+`pip install setuptools `
 
 ## Example
 
-This example demonstrates how to retrieve a weather forecast.
+This example demonstrates how to retrieve a weather forecast using `forecastcmd`.
 
-1. **Run the command:**
+1. **Run the command**
 
-    Once installed, run `forecast` from the command line.
+    Once `forecastcmd` is installed, call `forecast` from the command line.
 
-    For a forecast in Fahrenheit, you can also run `forecast -f` from the command line. For a forecast in Celsius, you can run `forecast -c`.
+    For a forecast in Celsius, you can also call `forecast -c` from the command line. For a forecast in Fahrenheit, you can call `forecast -f`.
 
 2. **Enter a temperature scale**
 
-    If you did not already indicate a temperature scale, the program will prompt you to enter one.
+    If you did not already indicate a temperature scale, the program will prompt you to enter one:
 
     ```
-    Enter a temperature scale (Fahrenheit [F] or Celsius [C]):
+    Enter a temperature scale (Celsius [C] or Fahrenheit [F]):
+    Celsius
     ```
 
-3. **Enter zip code:**
+3. **Enter a zip code**
 
-    The program will prompt you to enter a zip code.
+    The program will prompt you to enter a zip code:
     
     ```
     Enter zip code (5 digits):
+    80204
     ```
 
-4. **See the forecast:**
+4. **Print the forecast**
 
-    The program will print a weather forecast for the entered zip code.
+    The program will print a seven-day weather forecast in reverse chronological order, so that the current day appears closest to the console prompt in the output:
 
-5. **Continue or exit:**
+    ```
+    Sunday: A chance of rain. Partly sunny, with a high near 12.
+
+    Saturday Night: A chance of rain. Mostly cloudy, with a low around 6.
+
+    Saturday: Mostly sunny, with a high near 20.
+
+    Friday Night: Partly cloudy, with a low around 1.
+
+    Friday: A chance of rain before noon. Partly sunny, with a high near 15.
+
+    Thursday Night: A chance of snow. Mostly cloudy, with a low around 2.
+
+    Thursday: A chance of snow. Partly cloudy, with a high near 13.
+
+    Wednesday Night: Mostly cloudy, with a low around 10.
+
+    Wednesday: Mostly sunny, with a high near 22.
+
+    Tuesday Night: Mostly cloudy, with a low around 5.
+
+    Tuesday: Sunny, with a high near 18.
+
+    Monday Night: Mostly clear, with a low around 1.
+
+    Monday: Sunny, with a high near 20.
+
+    Overnight: Mostly clear, with a low around 3.
+    ```
+
+5. **Continue or exit**
+
     The program will ask if you want to enter another zip code. To exit, type 'no' ('n'), 'quit' ('q') or 'exit' ('e'), or trigger a KeyboardInterrupt (Ctrl + C).
 
     ```
     Any other zip code?:
-    No
+    ^C
 
     Exiting the program...
     ```
@@ -80,9 +116,9 @@ This example demonstrates how to retrieve a weather forecast.
 
 Follow these steps to run `forecastcmd`:
 
-1. **Clone the repository**: Clone the repository or download the source code.
-2. **Install dependencies**: Install the necessary Python libraries: `beautifulsoup4`, `requests` and `setuptools`.
-3. **Run the program**: Execute the program by calling `forecast`, `forecast -c` or `forecast -f` from the command line.
+1. **Review dependencies**: Make sure the required Python libraries are installed: `beautifulsoup4`, `requests` and `setuptools`.
+2. **Install the package**: Install `forecastcmd` by running `pip install git+https://github.com/adamggrim/forecastcmd.git`.
+3. **Run the program**: Execute the program by calling `forecast`, `forecast -c` (for Celsius) or `forecast -f` (for Fahrenheit) from the command line.
 
 ## License
 

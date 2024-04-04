@@ -18,11 +18,11 @@ def parse_args() -> Optional[str]:
             scale, otherwise None.
     """
     parser = argparse.ArgumentParser(description='Make an optional '
-                                     'specification for temperature scale.')
-    parser.add_argument('-c', '--celsius', action='store_true', help='Get the '
-                        'forecast in Celsius.')
+                                     'specification for a temperature scale.')
+    parser.add_argument('-c', '--celsius', action='store_true', help='get the '
+                        'forecast in Celsius')
     parser.add_argument('-f', '--fahrenheit', action='store_true', 
-                        help='Get the forecast in Fahrenheit.')
+                        help='get the forecast in Fahrenheit')
     args = parser.parse_args()
     if args.celsius:
         temp_scale = 'celsius'
