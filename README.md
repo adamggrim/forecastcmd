@@ -20,7 +20,7 @@ You can install these dependencies using pip:
 
 `pip install requests`
 
-`pip install setuptools `
+`pip install setuptools`
 
 ## Example
 
@@ -86,7 +86,7 @@ This example demonstrates how to retrieve a weather forecast using `forecastcmd`
 
 5. **Continue or exit**
 
-    The program will ask if you want to enter another zip code. To exit, type 'no' ('n'), 'quit' ('q') or 'exit' ('e'), or trigger a KeyboardInterrupt (Ctrl + C).
+    The program will ask if you want to enter another zip code. To exit, type 'no' ('n'), 'quit' ('q') or 'exit' ('e'), or trigger a KeyboardInterrupt (Ctrl + C):
 
     ```
     Any other zip code?:
@@ -98,27 +98,42 @@ This example demonstrates how to retrieve a weather forecast using `forecastcmd`
 ## Structure
 
 ```
-├── forecastcmd/
-│   ├── __init__.py: File for recognizing forecastcmd as a package
-│   ├── __main__.py: File for running the forecast command
-│   ├── config.py: Opens the JSON file for use in the program
-│   ├── constants.py: Defines constants used throughout the program
-│   ├── enums.py: Defines the enum for selecting the temperature scale
-│   ├── input_output.py: Handles user input and console output
-│   ├── parsing.py: Parses input and HTML data from weather.gov
-│   ├── regexes.py: Defines regular expressions for parsing
-│   └── validation.py: Functions for zip code and URL validation
-└── data/
-    └── zip_codes_forecast_urls_dict.json: Maps zip code strings to weather.gov forecast URL strings
+└── forecastcmd/
+    └── data/
+        └── zip_codes_forecast_urls_dict.json: Maps zip code strings to weather.gov forecast URL strings
+    ├── __init__.py: File for recognizing forecastcmd as a package
+    ├── __main__.py: File for running the forecast command
+    ├── config.py: Opens the JSON file for use in the program
+    ├── constants.py: Defines constants used throughout the program
+    ├── enums.py: Defines the enum for selecting the temperature scale
+    ├── input_output.py: Handles user input and console output
+    ├── parsing.py: Parses input and HTML data from weather.gov
+    ├── regexes.py: Defines regular expressions for parsing
+    └── validation.py: Functions for zip code and URL validation
 ```
 
 ## Usage
 
 Follow these steps to run `forecastcmd`:
 
-1. **Review dependencies**: Make sure the required Python libraries are installed: `beautifulsoup4`, `requests` and `setuptools`.
-2. **Install the package**: Install `forecastcmd` by running `pip install git+https://github.com/adamggrim/forecastcmd.git`.
-3. **Run the program**: Execute the program by calling `forecast`, `forecast -c` (for Celsius) or `forecast -f` (for Fahrenheit) from the command line.
+1. **Install Python**: Verify that you have Python 3.6 or later. You can install Python at `https://www.python.org/downloads/`.
+2. **Review dependencies**: Make sure the required Python libraries are installed: `beautifulsoup4`, `requests` and `setuptools`.
+3. **Install the package**: Install `forecastcmd` by running `pip install git+https://github.com/adamggrim/forecastcmd.git`.
+4. **Ensure the `forecast` command is on your system PATH**: If the executable file for the `forecast` command is not installed on your system PATH, you will receive a warning upon installation that includes the installed directory for the `forecast` command file:
+
+    ```
+    WARNING: The script forecast is installed in '/Users/<user>/Library/Python/3.9/bin' which is not on PATH.
+    ```
+
+    To resolve this, you can create a symbolic link to the underlying executable command file and place it on your PATH (macOS/Linux):
+
+    ```
+    sudo ln -s /Users/<user>/Library/Python/3.9/bin/forecast /usr/local/bin/
+    ```
+
+    Alternatively, you can add the installed directory to your PATH by editing the profile for your command line shell.
+
+5. **Run the program**: Execute the program by calling `forecast`, `forecast -c` (for Celsius) or `forecast -f` (for Fahrenheit) from the command line.
 
 ## License
 
