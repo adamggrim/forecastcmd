@@ -22,11 +22,11 @@ EXITING_PROGRAM_STR = 'Exiting the program...'
 # Set of strings for selecting Fahrenheit
 FAHRENHEIT_STRS = {'fahrenheit', 'f'}
 
-# Tuple of strings for indicating a negative response
-NO_STRS = ('no', 'n')
+# Set of strings for indicating a negative response
+NO_STRS = {'no', 'n'}
 
-# Tuple of strings for exiting the program
-QUIT_STRS = ('quit', 'q', 'exit', 'e')
+# Set of strings for exiting the program
+QUIT_STRS = {'quit', 'q', 'exit', 'e'}
 
 # Set of strings for indicating an affirmative response
 YES_STRS = {'yes', 'y'}

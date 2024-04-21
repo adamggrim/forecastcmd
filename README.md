@@ -98,7 +98,7 @@ This example demonstrates how to retrieve a weather forecast using `forecastcmd`
 ## Structure
 
 ```
-└── forecastcmd/
+forecastcmd/
     └── data/
         └── zip_codes_forecast_urls_dict.json: Maps zip code strings to weather.gov forecast URL strings
     ├── __init__.py: File for recognizing forecastcmd as a package
@@ -118,20 +118,25 @@ Follow these steps to run `forecastcmd`:
 
 1. **Install Python**: Verify that you have Python 3.6 or later. You can install Python at `https://www.python.org/downloads/`.
 2. **Review dependencies**: Make sure the required Python libraries are installed: `beautifulsoup4`, `requests` and `setuptools`.
-3. **Install the package**: Install `forecastcmd` by running `pip install git+https://github.com/adamggrim/forecastcmd.git`.
-4. **Ensure the `forecast` command is on your system PATH**: If the executable file for the `forecast` command is not installed on your system PATH, you will receive a warning upon installation that includes the installed directory for the `forecast` command file:
+3. **Install the package**: Install `forecastcmd` by running the following command:
+
+    ```
+    pip install git+https://github.com/adamggrim/forecastcmd.git
+    ```
+
+4. **Ensure the `forecast` command is on your system PATH**: If the executable file for the `forecast` command is not installed on your system PATH, you will receive a warning upon installation that indicates the installed directory for the `forecast` command file:
 
     ```
     WARNING: The script forecast is installed in '/Users/<user>/Library/Python/3.9/bin' which is not on PATH.
     ```
 
-    To resolve this, you can create a symbolic link to the underlying executable command file and place it on your PATH (macOS/Linux):
+    To resolve this warning, you can create a symbolic link to the underlying executable command file and place it on your PATH.
+
+    On macOS/Linux:
 
     ```
     sudo ln -s /Users/<user>/Library/Python/3.9/bin/forecast /usr/local/bin/
     ```
-
-    Alternatively, you can add the installed directory to your PATH by editing the profile for your command line shell.
 
 5. **Run the program**: Execute the program by calling `forecast`, `forecast -c` (for Celsius) or `forecast -f` (for Fahrenheit) from the command line.
 
