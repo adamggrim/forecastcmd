@@ -118,13 +118,13 @@ Follow these steps to run `forecastcmd`:
 
 1. **Install Python**: Verify that you have Python 3.6 or later. You can install Python at `https://www.python.org/downloads/`.
 2. **Review dependencies**: Make sure the required Python libraries are installed: `beautifulsoup4`, `requests` and `setuptools`.
-3. **Install the package**: Install `forecastcmd` by running the following command:
+3. **Install the package**: Install `forecastcmd` by running the following command in the console:
 
     ```
     pip install git+https://github.com/adamggrim/forecastcmd.git
     ```
 
-4. **Ensure the `forecast` command is on your system PATH**: If the executable file for the `forecast` command is not installed on your system PATH, you will receive a warning upon installation that indicates the installed directory for the `forecast` command file:
+4. **Ensure the `forecast` command is on your system PATH**: If the executable file for the `forecast` command is not installed on your system PATH, you will receive a warning upon installation that shows the installed directory for the `forecast` command file:
 
     ```
     WARNING: The script forecast is installed in '/Users/<user>/Library/Python/3.9/bin' which is not on PATH.
@@ -132,7 +132,7 @@ Follow these steps to run `forecastcmd`:
 
     To resolve this warning, you can create a symbolic link to the underlying executable command file and place it on your PATH.
 
-    On macOS/Linux:
+    On macOS:
 
     ```
     sudo ln -s /Users/<user>/Library/Python/3.9/bin/forecast /usr/local/bin/
