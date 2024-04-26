@@ -98,12 +98,11 @@ def format_forecasts(day_forecasts: list[str]) -> list[str]:
     """
     for index, day_forecast in enumerate(day_forecasts):
         # Remove extra spaces.
-        day_forecast = ParsingRegexes.spaces_regex.sub('', day_forecast)
+        day_forecast = ParsingRegexes.SPACES.sub('', day_forecast)
         # Add a space before a.m. and p.m.
-        day_forecast = ParsingRegexes.am_pm_space_regex.sub(' ', day_forecast)
+        day_forecast = ParsingRegexes.AM_PM_SPACE.sub(' ', day_forecast)
         # Standardize the format of a.m. and p.m.
-        day_forecast = ParsingRegexes.am_pm_format_regex.sub('.m.', 
-                                                            day_forecast)
+        day_forecast = ParsingRegexes.AM_PM_FORMAT.sub('.m.', day_forecast)
         day_forecasts[index] = day_forecast
     return day_forecasts
 
@@ -124,13 +123,13 @@ def convert_forecasts(day_forecasts: list[str]) -> list[str]:
     formatted_forecasts = format_forecasts(day_forecasts)
     for index, day_forecast in enumerate(formatted_forecasts):
         # Find all Fahrenheit temperatures and put them in a list.
-        fahrenheit_temps = ParsingRegexes.temps_finder_regex.findall(
-            day_forecast)
+        fahrenheit_temps = ParsingRegexes.TEMPS_FINDER.findall(day_forecast)
         # Convert the list of Fahrenheit temperatures to Celsius.
         celsius_temps = f2c(fahrenheit_temps)
         # Loop over Fahrenheit temperatures and substitute with Celsius.
         for temp_index, temp in enumerate(fahrenheit_temps):
-            day_forecast = re.sub(rf'-?{temp}\b{ParsingRegexes.lookahead}', 
-                                celsius_temps[temp_index], day_forecast)
+            day_forecast = re.sub(rf'-?{temp}\b'
+                                  rf'{ParsingRegexes.LOOKAHEAD_STR}', 
+                                  celsius_temps[temp_index], day_forecast)
         formatted_forecasts[index] = day_forecast
     return formatted_forecasts

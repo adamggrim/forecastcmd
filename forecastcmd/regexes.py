@@ -6,24 +6,23 @@ class ParsingRegexes:
     Compiled regular expressions for parsing forecast data.
     
     Attributes:
-        spaces_regex (Pattern): Compiled regular expression object that 
+        AM_PM_SPACE (Pattern): Compiled regular expression object that 
+            captures the boundary between a time value and a.m. and p.m.
+        AM_PM_FORMAT (Pattern): Compiled regular expression object that 
+            captures a.m. and p.m. strings for reformatting.
+        LOOKAHEAD_STR (str): Regular expression string to ignore 
+            numbers in the forecast that are not temperatures.
+        SPACES (Pattern): Compiled regular expression object that 
             captures duplicate spaces and trailing whitespace.
-        am_pm_space_regex (Pattern): Compiled regular expression object 
-            that captures the boundary between a time value and a.m. 
-            and p.m.
-        am_pm_format_regex (Pattern): Compiled regular expression 
-            object that captures a.m. and p.m. strings for reformatting.
-        lookahead (str): Regular expression string to ignore numbers in 
-            the forecast that are not temperatures.
-        temps_finder_regex (Pattern): Compiled regular expression 
-            object to capture numbers in a forecast that are 
-            temperatures.
+        TEMPS_FINDER (Pattern): Compiled regular expression object to 
+            capture numbers in a forecast that are temperatures.
     """
-    spaces_regex = re.compile(r'(?<=\s)\s|\s+$')
-    am_pm_space_regex = re.compile(r'(?<=\d)(?=am|pm)')
-    am_pm_format_regex = re.compile(r'(?<=\d\s(a|p))m\.?')
-    lookahead = r'(?!\spercent|%|\sa\.m\.|\sp\.m\.|\sto|\smph|\sand|\sinch)'
-    temps_finder_regex = re.compile(r'-?\d{1,3}\b' + lookahead)
+    LOOKAHEAD_STR = r'(?!\spercent|%|\sa\.m\.|\sp\.m\.|\sto|\smph|\sand|\sinch)'
+
+    AM_PM_SPACE = re.compile(r'(?<=\d)(?=am|pm)')
+    AM_PM_FORMAT = re.compile(r'(?<=\d\s(a|p))m\.?')
+    SPACES = re.compile(r'(?<=\s)\s|\s+$')
+    TEMPS_FINDER = re.compile(r'-?\d{1,3}\b' + LOOKAHEAD_STR)
 
 
 class ValidationRegexes:
@@ -31,13 +30,11 @@ class ValidationRegexes:
     Compiled regular expressions for validating input data.
 
     Attributes:
-        zip_code_regex (Pattern): Compiled regular expression object 
-            that captures any string that is only a sequence of five 
-            digits.
-        url_regex (Pattern): Compiled regular expression object that 
-            captures any string that matches weather.gov's forecast URL 
-            syntax.
+        url (Pattern): Compiled regular expression object that captures 
+            any string that matches weather.gov's forecast URL syntax.
+        zip_code (Pattern): Compiled regular expression object that 
+            captures any string that is only a sequence of five digits.
     """
-    zip_code_regex = re.compile(r'^\d{5}$')
-    url_regex = re.compile(r'^https?://forecast\.weather\.gov/MapClick\.php\?'
+    URL = re.compile(r'^https?://forecast\.weather\.gov/MapClick\.php\?'
                         r'lat=(-?\d+\.\d+)&lon=(-?\d+\.\d+)$')
+    ZIP_CODE = re.compile(r'^\d{5}$')

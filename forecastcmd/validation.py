@@ -4,44 +4,33 @@ from forecastcmd.regexes import ValidationRegexes
 
 
 class HTMLElementNotFoundError(Exception):
-    """
-    Exception raised raised when a given HTML element cannot be 
-        found.
-    """
+    """Exception raised raised when a given HTML element cannot be 
+        found."""
 
 
 class InvalidTempScaleError(Exception):
-    """
-    Exception raised when the provided temperature scale string is 
-        invalid.
-    """
+    """Exception raised when the provided temperature scale string is 
+        invalid."""
 
 
 class InvalidUrlFormatError(Exception):
-    """
-    Exception raised when the provided string does not match 
-        weather.gov's forecast URL syntax.
-    """
+    """Exception raised when the provided string does not match 
+        weather.gov's forecast URL syntax."""
 
 
 class InvalidZipCodeFormatError(Exception):
-    """
-    Exception raised when the provided string is not a valid zip code.
-    """
+    """Exception raised when the provided string is not a valid zip 
+        code."""
 
 
 class NoTempScaleError(Exception):
-    """
-    Exception raised when the provided temperature scale string is 
-        empty.
-    """
+    """Exception raised when the provided temperature scale string is 
+        empty."""
 
 
 class NoDataForZipCodeError(Exception):
-    """
-    Exception raised when there is no data available for the given zip 
-        code.
-    """
+    """Exception raised when there is no data available for the given 
+        zip code."""
 
 
 class NoZipCodeError(Exception):
@@ -49,10 +38,8 @@ class NoZipCodeError(Exception):
 
 
 class ZipCodeNotFoundError(Exception):
-    """
-    Exception raised when the zip code string is not found in the given 
-        JSON file.
-    """
+    """Exception raised when the zip code string is not found in the given 
+        JSON file."""
 
 
 def validate_temp_scale(temp_scale) -> None:
@@ -79,7 +66,7 @@ def validate_zip_code(zip_code) -> None:
     """
     if zip_code == '':
         raise NoZipCodeError('No zip code entered.')
-    elif not ValidationRegexes.zip_code_regex.match(zip_code):
+    elif not ValidationRegexes.ZIP_CODE.match(zip_code):
         raise InvalidZipCodeFormatError('Invalid zip code format.')
     elif zip_code not in zip_codes_dict:
         raise ZipCodeNotFoundError('Zip code not found.')
@@ -98,5 +85,5 @@ def validate_url(url) -> None:
     Returns:
         None
     """
-    if not ValidationRegexes.url_regex.match(url):
+    if not ValidationRegexes.URL.match(url):
         raise InvalidUrlFormatError('Invalid URL for that zip code.')
