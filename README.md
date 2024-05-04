@@ -14,14 +14,6 @@
 - `requests`: For making HTTP requests to retrieve forecast data from weather.gov
 - `setuptools`: For building and installing the `forecastcmd` package, and for implementing command-line functionality using entry points
 
-You can install these dependencies using pip:
-
-`pip install beautifulsoup4`
-
-`pip install requests`
-
-`pip install setuptools`
-
 ## Example
 
 This example demonstrates how to retrieve a weather forecast using `forecastcmd`.
@@ -99,17 +91,17 @@ This example demonstrates how to retrieve a weather forecast using `forecastcmd`
 
 ```
 forecastcmd/
-    └── data/
-        └── zip_codes_forecast_urls_dict.json: Maps zip code strings to weather.gov forecast URL strings
-    ├── __init__.py: File for recognizing forecastcmd as a package
-    ├── __main__.py: File for running the forecast command
-    ├── config.py: Opens the JSON file for use in the program
-    ├── constants.py: Defines constants used throughout the program
-    ├── enums.py: Defines the enum for selecting the temperature scale
-    ├── input_output.py: Handles user input and console output
-    ├── parsing.py: Parses input and HTML data from weather.gov
-    ├── regexes.py: Defines regular expressions for parsing
-    └── validation.py: Functions for zip code and URL validation
+└── data/
+|   └── zip_codes_forecast_urls_dict.json: Maps zip code strings to weather.gov forecast URL strings
+├── __init__.py: File for recognizing forecastcmd as a package
+├── __main__.py: File for running the forecast command
+├── config.py: Opens the JSON file for use in the program
+├── constants.py: Defines constants used throughout the program
+├── enums.py: Defines the enum for selecting the temperature scale
+├── input_output.py: Handles user input and console output
+├── parsing.py: Parses input and HTML data from weather.gov
+├── regexes.py: Defines regular expressions for parsing
+└── validation.py: Functions for zip code and URL validation
 ```
 
 ## Usage
@@ -117,26 +109,67 @@ forecastcmd/
 Follow these steps to run `forecastcmd`:
 
 1. **Install Python**: Verify that you have Python 3.6 or later. You can install Python at `https://www.python.org/downloads/`.
-2. **Review dependencies**: Make sure the required Python libraries are installed: `beautifulsoup4`, `requests` and `setuptools`.
-3. **Install the package**: Install `forecastcmd` by running the following command in the console:
+2. **Review dependencies**: Make sure the required Python packages are installed: `beautifulsoup4`, `requests` and `setuptools`.
 
-    ```
-    pip install git+https://github.com/adamggrim/forecastcmd.git
-    ```
+    You can check whether these packages are installed using pip's `show` command on each package.
 
-4. **Ensure the `forecast` command is on your system PATH**: If the executable file for the `forecast` command is not installed on your system PATH, you will receive a warning upon installation that shows the installed directory for the `forecast` command file:
-
+    On macOS:
     ```
-    WARNING: The script forecast is installed in '/Users/<user>/Library/Python/3.9/bin' which is not on PATH.
+    pip3 show beautifulsoup4
     ```
 
-    To resolve this warning, you can create a symbolic link to the underlying executable command file and place it on your PATH.
+    If the package is not installed, you will receive the warning, `WARNING: Package(s) not found`. You can install a missing package using pip.
+
+    On macOS:
+    ```
+    pip3 install beautifulsoup4
+    ```
+
+3. **Install the package**: Install `forecastcmd` using pip.
 
     On macOS:
 
     ```
-    sudo ln -s /Users/<user>/Library/Python/3.9/bin/forecast /usr/local/bin/
+    pip3 install git+https://github.com/adamggrim/forecastcmd.git
     ```
+
+4. **Make sure the `forecast` command is on your system PATH**: Try to run `forecast` from the command line. If the console does not recognize the command, it was not installed on your system PATH.
+
+    To resolve this, follow these steps:
+
+    1. Identify your system PATH, which is where you will place a link to the `forecast` command.
+
+        On macOS:
+        ```
+        echo $PATH
+        ```
+
+    2. Find the installed location of the `forecastcmd` package using pip's `show` command.
+
+        On macOS:
+        ```
+        pip3 show forecastcmd
+        ```
+
+        The location of `forecastcmd` will be listed in the command's output. For example:
+        ```
+        Location: /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages
+        ```
+
+    3. Once you have determined the location of `forecastcmd`, find the installed location of the `forecast` command file in your parent Python folder.
+
+        On macOS:
+        ```
+        find /Library/Frameworks/Python.framework/Versions/3.12/ -name forecast
+        ```
+
+    4. Create a symbolic link to the underlying `forecast` command file and place it in the local directory on your system PATH.
+
+        On macOS:
+
+        ```
+        sudo ln -s /Library/Frameworks/Python.framework/Versions/3.12/bin/forecast /usr/local/bin/
+        ```
 
 5. **Run the program**: Execute the program by calling `forecast`, `forecast -c` (for Celsius) or `forecast -f` (for Fahrenheit) from the command line.
 
