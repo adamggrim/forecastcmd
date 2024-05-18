@@ -110,7 +110,7 @@ def get_temp_scale() -> str:
     """
     while True:
         temp_scale = input().strip().lower()
-        if temp_scale in NO_STRS or temp_scale in QUIT_STRS:
+        if temp_scale in (NO_STRS | QUIT_STRS):
             program_exit()
         else:
             try:
@@ -132,7 +132,7 @@ def get_url() -> str:
     """
     while True:
         zip_code = input().strip().lower()
-        if zip_code in NO_STRS or zip_code in QUIT_STRS:
+        if zip_code in (NO_STRS | QUIT_STRS):
             program_exit()
         elif zip_code in YES_STRS:
             print_wrapped(ENTER_VALID_ZIP_STR)
