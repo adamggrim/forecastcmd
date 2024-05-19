@@ -78,7 +78,7 @@ This example demonstrates how to retrieve a weather forecast using `forecastcmd`
 
 5. **Continue or exit**
 
-    The program will ask if you want to enter another zip code. To exit, type 'no' ('n'), 'quit' ('q') or 'exit' ('e'), or trigger a KeyboardInterrupt (Ctrl + C):
+    The program will prompt you to enter another zip code. To exit, type `no` (`n`), `quit` (`q`) or `exit` (`e`), or trigger a KeyboardInterrupt (Ctrl + C):
 
     ```
     Any other zip code?:
@@ -95,13 +95,13 @@ forecastcmd/
 |   └── zip_codes_forecast_urls_dict.json: Maps zip code strings to weather.gov forecast URL strings
 ├── __init__.py: File for recognizing forecastcmd as a package
 ├── __main__.py: File for running the forecast command
-├── config.py: Opens the JSON file for use in the program
-├── constants.py: Defines constants used throughout the program
-├── enums.py: Defines the enum for selecting the temperature scale
+├── config.py: Opens the JSON file for use in the package
+├── constants.py: Defines constants used throughout the package
+├── enums.py: Defines enum for selecting the temperature scale
 ├── input_output.py: Handles user input and console output
 ├── parsing.py: Parses input and HTML data from weather.gov
 ├── regexes.py: Defines regular expressions for parsing
-└── validation.py: Functions for zip code and URL validation
+└── validation.py: Defines functions for zip code and URL validation
 ```
 
 ## Usage
@@ -137,14 +137,7 @@ Follow these steps to run `forecastcmd`:
 
     To resolve this, follow these steps:
 
-    1. Identify your system PATH, which is where you will place a link to the `forecast` command.
-
-        On macOS:
-        ```
-        echo $PATH
-        ```
-
-    2. Find the installed location of the `forecastcmd` package using pip's `show` command.
+    1. Find the installed location of the `forecastcmd` package using pip's `show` command.
 
         On macOS:
         ```
@@ -156,20 +149,22 @@ Follow these steps to run `forecastcmd`:
         Location: /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages
         ```
 
-    3. Once you have determined the location of `forecastcmd`, find the installed location of the `forecast` command file in your parent Python folder.
+    2. Once you have determined the location of `forecastcmd`, find the installed location of the `forecast` command file in your parent Python folder.
 
         On macOS:
         ```
         find /Library/Frameworks/Python.framework/Versions/3.12/ -name forecast
         ```
 
-    4. Create a symbolic link to the underlying `forecast` command file and place it in the local directory on your system PATH.
+    3. Create a symbolic link to the underlying `forecast` command file and place it in the local directory on your system PATH.
 
         On macOS:
 
         ```
         sudo ln -s /Library/Frameworks/Python.framework/Versions/3.12/bin/forecast /usr/local/bin/
         ```
+
+        To find the system PATH, you can type `echo $PATH` into the console (macOS).
 
 5. **Run the program**: Execute the program by calling `forecast`, `forecast -c` (for Celsius) or `forecast -f` (for Fahrenheit) from the command line.
 
