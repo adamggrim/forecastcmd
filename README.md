@@ -97,9 +97,9 @@ forecastcmd/
 ├── __main__.py: File for running the forecast command
 ├── config.py: Opens the JSON file for use in the package
 ├── constants.py: Defines constants used throughout the package
-├── enums.py: Defines enum for selecting the temperature scale
+├── enums.py: Defines enum for temperature scales
 ├── input_output.py: Handles user input and console output
-├── parsing.py: Parses input and HTML data from weather.gov
+├── parsing.py: Parses input, HTML data and command-line arguments
 ├── regexes.py: Defines regular expressions for parsing
 └── validation.py: Defines functions for zip code and URL validation
 ```

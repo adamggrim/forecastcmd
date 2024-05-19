@@ -7,8 +7,8 @@ from forecastcmd.config import zip_codes_dict
 from forecastcmd.constants import (ANY_OTHER_ZIP_STR, 
                                    ENTER_VALID_TEMP_SCALE_STR, 
                                    ENTER_VALID_ZIP_STR, 
-                                   ENTER_ZIP_STR, EXITING_PROGRAM_STR, 
-                                   NO_STRS, QUIT_STRS, YES_STRS)
+                                   ENTER_ZIP_STR, EXIT_STR, NO_STRS, 
+                                   QUIT_STRS, YES_STRS)
 from forecastcmd.enums import TempScale
 from forecastcmd.parsing import (parse_forecast, format_forecasts, 
                                 convert_forecasts)
@@ -72,6 +72,11 @@ class ForecastLoop:
         self._zip_input(TempScale.CELSIUS)
 
 
+def print_padding() -> None:
+    """Prints a blank line for padding."""
+    print('')
+
+
 def print_wrapped(text: str) -> None:
     """
     Wraps printing based on the width of the terminal and adds a 
@@ -86,17 +91,12 @@ def print_wrapped(text: str) -> None:
     print('\n' + wrapped_str)
 
 
-def print_padding() -> None:
-    """Prints a blank line for padding."""
-    print('')
-
-
 def program_exit() -> None:
     """
     Prints a message that the program is exiting, then exits the 
         program.
     """
-    print_wrapped(EXITING_PROGRAM_STR)
+    print_wrapped(EXIT_STR)
     print_padding()
     exit()
 

@@ -17,7 +17,7 @@ ENTER_VALID_ZIP_STR = 'Please enter a valid zip code:'
 ENTER_ZIP_STR = 'Enter zip code (5 digits):'
 
 # String printed when the user exits the program
-EXITING_PROGRAM_STR = 'Exiting the program...'
+EXIT_STR = 'Exiting the program...'
 
 # Set of strings for selecting Fahrenheit
 FAHRENHEIT_STRS = {'fahrenheit', 'f'}
