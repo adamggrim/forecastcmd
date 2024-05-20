@@ -5,6 +5,7 @@ from typing import Optional
 import requests
 from bs4 import BeautifulSoup
 
+from forecastcmd.constants import HelpMessages
 from forecastcmd.regexes import ParsingRegexes
 from forecastcmd.validation import HTMLElementNotFoundError
 
@@ -17,13 +18,12 @@ def parse_args() -> Optional[str]:
         temp_scale (Optional[str]): A string representing a specified temperature 
             scale, otherwise None.
     """
-    parser = argparse.ArgumentParser(description='Make an optional '
-                                     'specification for a temperature scale.')
+    parser = argparse.ArgumentParser(description=HelpMessages.DESCRIPTION)
     group = parser.add_mutually_exclusive_group()
-    group.add_argument('-c', '--celsius', action='store_true', help='get the '
-                        'forecast in Celsius')
+    group.add_argument('-c', '--celsius', action='store_true', 
+                       help=HelpMessages.CELSIUS)
     group.add_argument('-f', '--fahrenheit', action='store_true', 
-                        help='get the forecast in Fahrenheit')
+                        help=HelpMessages.FAHRENHEIT)
     args = parser.parse_args()
     if args.celsius:
         temp_scale = 'celsius'
