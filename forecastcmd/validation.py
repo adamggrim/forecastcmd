@@ -81,9 +81,6 @@ def validate_url(url) -> None:
     
     Args:
         url (str): A string representing a URL.
-    
-    Returns:
-        None
     """
     if not ValidationRegexes.URL.match(url):
         raise InvalidUrlFormatError('Invalid URL for that zip code.')
