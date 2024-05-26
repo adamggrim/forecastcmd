@@ -6,7 +6,7 @@ setup(
     description='Package for retrieving weather forecasts from NOAA',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    keywords='weather forecast celsius fahrenheit',
+    keywords='weather, forecast, celsius, fahrenheit',
     url='https://github.com/adamggrim/forecastcmd',
     author='Adam Grim',
     license='MIT',
