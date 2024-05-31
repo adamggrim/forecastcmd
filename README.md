@@ -133,40 +133,42 @@ Follow these steps to run `forecastcmd`:
     pip3 install git+https://github.com/adamggrim/forecastcmd.git
     ```
 
-4. **Make sure the `forecast` command is on your system PATH**: Try to run `forecast` from the command line. If the console does not recognize the command, it was not installed on your system PATH.
+4. **Run the program**: Execute the program by calling `forecast`, `forecast -c` (for Celsius) or `forecast -f` (for Fahrenheit) from the command line.
 
-    To resolve this, follow these steps:
+## Troubleshooting
 
-    1. Find the installed location of the `forecastcmd` package using pip's `show` command.
+If the console cannot find the `forecast` command when you try to run it from the command line, it was not installed on your system PATH.
 
-        On macOS:
-        ```
-        pip3 show forecastcmd
-        ```
+To resolve this, follow these steps:
 
-        The location of `forecastcmd` will be listed in the command's output. For example:
-        ```
-        Location: /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages
-        ```
+1. Find the installed location of the `forecastcmd` package using pip's `show` command.
 
-    2. Once you have determined the location of `forecastcmd`, find the installed location of the `forecast` command file in your parent Python folder.
+    On macOS:
+    ```
+    pip3 show forecastcmd
+    ```
 
-        On macOS:
-        ```
-        find /Library/Frameworks/Python.framework/Versions/3.12/ -name forecast
-        ```
+    The location of `forecastcmd` will be listed in the command's output. For example:
+    ```
+    Location: /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages
+    ```
 
-    3. Create a symbolic link to the underlying `forecast` command file and place it in the local directory on your system PATH.
+2. Once you have determined the location of `forecastcmd`, find the installed location of the `forecast` command file in your parent Python folder.
 
-        On macOS:
+    On macOS:
+    ```
+    find /Library/Frameworks/Python.framework/Versions/3.12/ -name forecast
+    ```
 
-        ```
-        sudo ln -s /Library/Frameworks/Python.framework/Versions/3.12/bin/forecast /usr/local/bin/
-        ```
+3. Create a symbolic link to the underlying `forecast` command file and place it in the local directory on your system PATH.
 
-        To find the system PATH, you can type `echo $PATH` into the console (macOS).
+    On macOS:
 
-5. **Run the program**: Execute the program by calling `forecast`, `forecast -c` (for Celsius) or `forecast -f` (for Fahrenheit) from the command line.
+    ```
+    sudo ln -s /Library/Frameworks/Python.framework/Versions/3.12/bin/forecast /usr/local/bin/
+    ```
+
+    To find the system PATH, you can type `echo $PATH` into the console (macOS).
 
 ## License
 
