@@ -77,17 +77,17 @@ def print_padding() -> None:
     print('')
 
 
-def print_wrapped(text: str) -> None:
+def print_wrapped(string: str) -> None:
     """
     Wraps printing based on the width of the terminal and adds a 
         newline character to the start of the string.
 
     Args:
-        text (str): The string to be printed.
+        text (str): The string to print.
     """
     terminal_size = os.get_terminal_size()[0]
     print_size = terminal_size - 1
-    wrapped_str = textwrap.fill(text, width=print_size)
+    wrapped_str = textwrap.fill(string, width=print_size)
     print('\n' + wrapped_str)
 
 
