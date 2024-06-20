@@ -15,7 +15,7 @@ def parse_args() -> Optional[str]:
     Parses command-line arguments for a temperature scale specification.
 
     Returns:
-        temp_scale (Optional[str]): A string representing a specified temperature 
+        Optional[str]: A string representing a specified temperature 
             scale, otherwise None.
     """
     parser = argparse.ArgumentParser(description=HelpMessages.DESCRIPTION)
@@ -26,12 +26,11 @@ def parse_args() -> Optional[str]:
                         help=HelpMessages.FAHRENHEIT)
     args = parser.parse_args()
     if args.celsius:
-        temp_scale = 'celsius'
+        return 'celsius'
     elif args.fahrenheit:
-        temp_scale = 'fahrenheit'
+        return 'fahrenheit'
     else:
-        temp_scale = None
-    return temp_scale
+        return None
 
 
 def f2c(fahrenheit_temps: list[str]) -> list[str]:
@@ -43,12 +42,9 @@ def f2c(fahrenheit_temps: list[str]) -> list[str]:
             strings.
     
     Returns:
-        celsius_temps (list[str]): A list of Celsius temperature 
-            strings.
+        list[str]: A list of Celsius temperature strings.
     """
-    celsius_temps = [str(round((int(temp) - 32) * 5 / 9)) 
-                    for temp in fahrenheit_temps]
-    return(celsius_temps)
+    return [str(round((int(temp) - 32) * 5 / 9)) for temp in fahrenheit_temps]
 
 
 def parse_forecast(url: str) -> list[str]:
@@ -59,8 +55,8 @@ def parse_forecast(url: str) -> list[str]:
         url (str): The url to access for weather data.
 
     Returns:
-        day_forecasts (list[str]): A list of strings pairing each day 
-            string with a forecast string.
+        list[str]: A list of strings pairing each day string with a 
+            forecast string.
     """
     nws_page = requests.get(url)
     soup = BeautifulSoup(nws_page.content, 'html.parser')
@@ -79,9 +75,8 @@ def parse_forecast(url: str) -> list[str]:
                                        'code.')
     # Reverse the order of the strings so the current day appears 
     # closest to the console prompt in the output.
-    day_forecasts = [day + ": " + forecast for day, forecast in 
-                    zip(days[::-1], forecasts[::-1])]
-    return day_forecasts
+    return [day + ": " + forecast for day, forecast in zip(days[::-1], 
+                                                           forecasts[::-1])]
 
 
 def format_forecasts(day_forecasts: list[str]) -> list[str]:
