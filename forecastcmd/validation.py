@@ -42,7 +42,7 @@ class ZipCodeNotFoundError(Exception):
         JSON file."""
 
 
-def validate_temp_scale(temp_scale) -> None:
+def validate_temp_scale(temp_scale: str) -> None:
     """
     Validates the temperature scale string by checking whether the 
         string is in the sets CELSIUS_STRS or FAHRENHEIT_STRS.
@@ -56,7 +56,7 @@ def validate_temp_scale(temp_scale) -> None:
         raise InvalidTempScaleError('Not a valid temperature scale.')
 
 
-def validate_zip_code(zip_code) -> None:
+def validate_zip_code(zip_code: str) -> None:
     """
     Validates the zip code string passed into the function by checking 
         whether the string is only a sequence of five digits.
@@ -74,7 +74,7 @@ def validate_zip_code(zip_code) -> None:
         raise NoDataForZipCodeError(f'No data available for {zip_code}.')
 
 
-def validate_url(url) -> None:
+def validate_url(url: str) -> None:
     """
     Validates the URL string passed into the function by checking 
         whether the string matches weather.gov's forecast URL syntax.

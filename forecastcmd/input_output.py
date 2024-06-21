@@ -152,7 +152,7 @@ def get_url() -> str:
                 return url
 
 
-def print_forecast(url, temp_scale: TempScale) -> None:
+def print_forecast(url: str, temp_scale: TempScale) -> None:
     """
     Prints forecast data from a given URL to the console.
 
