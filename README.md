@@ -44,7 +44,7 @@ This example demonstrates how to retrieve a weather forecast using `forecastcmd`
 
 4. **Print the forecast**
 
-    The program will print a seven-day weather forecast in reverse chronological order, so that the current day appears closest to the console prompt in the output:
+    The program will print a seven-day weather forecast in reverse chronological order, so that the current day appears closest to the bottom of the output:
 
     ```
     Sunday: A chance of rain. Partly sunny, with a high near 12.
