@@ -1,6 +1,6 @@
 # Forecast Command
 
-`forecastcmd` is a Python package for retrieving weather forecasts from NOAA (National Oceanic and Atmospheric Administration) and printing them to the console. For a given zip code, a seven-day forecast can print in Fahrenheit or Celsius.
+`forecastcmd` is a Python package for retrieving forecasts from NOAA (National Oceanic and Atmospheric Administration) and printing them to the console. For a given zip code, `forecastcmd` can print a seven-day forecast in Fahrenheit or Celsius.
 
 ## Requirements
 
