@@ -10,20 +10,19 @@ class ParsingRegexes:
             captures the boundary between a time value and a.m. or p.m.
         AM_PM_FORMAT (Pattern): Compiled regular expression object that 
             captures a.m. and p.m. strings for reformatting.
-        LOOKAHEAD_STR (str): Regular expression pattern that ignores 
-            numbers in the forecast that are not temperatures.
+        NOT_TEMPS_LOOKAHEAD (str): Regular expression lookahead pattern that 
+            ignores numbers in the forecast that are not temperatures.
         SPACES (Pattern): Compiled regular expression object that 
             captures duplicate spaces and trailing whitespace.
         TEMPS_FINDER (Pattern): Compiled regular expression object that 
             captures numbers in a forecast that are temperatures.
     """
-    LOOKAHEAD_STR = (r'(?!\spercent|%|\sa\.m\.|\sp\.m\.|\sto|\smph|\sand'
-                     r'|\sinch)')
-
+    NOT_TEMPS_LOOKAHEAD = (r'(?!\spercent|%|\.|\sa\.m\.|\sp\.m\.|\sto|\smph'
+                     r'|\sand|\sof\san|\sinch)')
     AM_PM_SPACE = re.compile(r'(?<=\d)(?=am|pm)')
     AM_PM_FORMAT = re.compile(r'(?<=\d\s(a|p))m\.?')
     SPACES = re.compile(r'(?<=\s)\s|\s+$')
-    TEMPS_FINDER = re.compile(r'-?\d{1,3}\b' + LOOKAHEAD_STR)
+    TEMPS_FINDER = re.compile(r'-?\d{1,3}\b' + NOT_TEMPS_LOOKAHEAD)
 
 
 class ValidationRegexes:

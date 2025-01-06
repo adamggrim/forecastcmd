@@ -124,7 +124,7 @@ def convert_forecasts(day_forecasts: list[str]) -> list[str]:
         # Loop over Fahrenheit temperatures and substitute with Celsius.
         for temp_index, temp in enumerate(fahrenheit_temps):
             day_forecast = re.sub(rf'-?{temp}\b'
-                                  rf'{ParsingRegexes.LOOKAHEAD_STR}', 
+                                  rf'{ParsingRegexes.NOT_TEMPS_LOOKAHEAD}', 
                                   celsius_temps[temp_index], day_forecast)
         formatted_forecasts[index] = day_forecast
     return formatted_forecasts
