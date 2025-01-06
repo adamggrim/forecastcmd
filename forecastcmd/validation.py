@@ -1,5 +1,6 @@
 from forecastcmd.config import zip_codes_dict
-from forecastcmd.constants import (CELSIUS_STRS, FAHRENHEIT_STRS)
+from forecastcmd.constants import (CELSIUS_INPUTS, 
+                                   FAHRENHEIT_INPUTS)
 from forecastcmd.regexes import ValidationRegexes
 
 
@@ -45,14 +46,15 @@ class ZipCodeNotFoundError(Exception):
 def validate_temp_scale(temp_scale: str) -> None:
     """
     Validates the temperature scale string by checking whether the 
-        string is in the sets CELSIUS_STRS or FAHRENHEIT_STRS.
+        string is in the sets CELSIUS_INPUTS or FAHRENHEIT_INPUTS.
     
     Args:
         temp_scale (str): A string representing a temperature scale.
     """
     if temp_scale == '':
         raise NoTempScaleError('No temperature scale entered.')
-    elif temp_scale not in CELSIUS_STRS and temp_scale not in FAHRENHEIT_STRS:
+    elif (temp_scale not in CELSIUS_INPUTS and temp_scale not in 
+          FAHRENHEIT_INPUTS):
         raise InvalidTempScaleError('Not a valid temperature scale.')
 
 

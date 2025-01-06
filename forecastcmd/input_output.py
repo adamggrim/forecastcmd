@@ -4,11 +4,14 @@ import textwrap
 import requests
 
 from forecastcmd.config import zip_codes_dict
-from forecastcmd.constants import (ANY_OTHER_ZIP_STR, 
-                                   ENTER_VALID_TEMP_SCALE_STR, 
-                                   ENTER_VALID_ZIP_STR, 
-                                   ENTER_ZIP_STR, EXIT_STR, NO_STRS, 
-                                   QUIT_STRS, YES_STRS)
+from forecastcmd.constants import (ANY_OTHER_ZIP_PROMPT, 
+                                   ENTER_VALID_TEMP_SCALE_PROMPT, 
+                                   ENTER_VALID_ZIP_PROMPT, 
+                                   ENTER_ZIP_PROMPT, 
+                                   EXIT_PROMPT, 
+                                   NO_INPUTS, 
+                                   QUIT_INPUTS, 
+                                   YES_INPUTS)
 from forecastcmd.enums import TempScale
 from forecastcmd.parsing import (parse_forecast, format_forecasts, 
                                 convert_forecasts)
@@ -35,7 +38,7 @@ class ForecastLoop:
         Args:
             self: The instance of the InputLoop class.
         """
-        print_wrapped(ENTER_ZIP_STR)
+        print_wrapped(ENTER_ZIP_PROMPT)
     
     def _zip_input(self, temp_scale: TempScale) -> None:
         """
@@ -51,7 +54,7 @@ class ForecastLoop:
         while True:
             url = get_url()
             print_forecast(url, temp_scale)
-            print_wrapped(ANY_OTHER_ZIP_STR)
+            print_wrapped(ANY_OTHER_ZIP_PROMPT)
     
     def fahrenheit(self) -> None:
         """
@@ -96,7 +99,7 @@ def program_exit() -> None:
     Prints a message that the program is exiting, then exits the 
         program.
     """
-    print_wrapped(EXIT_STR)
+    print_wrapped(EXIT_PROMPT)
     print_padding()
     exit()
 
@@ -110,14 +113,14 @@ def get_temp_scale() -> str:
     """
     while True:
         temp_scale = input().strip().lower()
-        if temp_scale in (NO_STRS | QUIT_STRS):
+        if temp_scale in (NO_INPUTS | QUIT_INPUTS):
             program_exit()
         else:
             try:
                 validate_temp_scale(temp_scale)
             except (NoTempScaleError, InvalidTempScaleError) as e:
                 print_wrapped(str(e))
-                print_wrapped(ENTER_VALID_TEMP_SCALE_STR)
+                print_wrapped(ENTER_VALID_TEMP_SCALE_PROMPT)
             else:
                 return temp_scale
 
@@ -132,10 +135,10 @@ def get_url() -> str:
     """
     while True:
         zip_code = input().strip().lower()
-        if zip_code in (NO_STRS | QUIT_STRS):
+        if zip_code in (NO_INPUTS | QUIT_INPUTS):
             program_exit()
-        elif zip_code in YES_STRS:
-            print_wrapped(ENTER_VALID_ZIP_STR)
+        elif zip_code in YES_INPUTS:
+            print_wrapped(ENTER_VALID_ZIP_PROMPT)
         else:
             try:
                 validate_zip_code(zip_code)
@@ -143,11 +146,11 @@ def get_url() -> str:
                 validate_url(url)
             except (NoZipCodeError, InvalidZipCodeFormatError) as e:
                 print_wrapped(str(e))
-                print_wrapped(ENTER_VALID_ZIP_STR)
+                print_wrapped(ENTER_VALID_ZIP_PROMPT)
             except (ZipCodeNotFoundError, NoDataForZipCodeError, 
                     InvalidUrlFormatError) as e:
                 print_wrapped(str(e))
-                print_wrapped(ANY_OTHER_ZIP_STR)
+                print_wrapped()
             else:
                 return url
 

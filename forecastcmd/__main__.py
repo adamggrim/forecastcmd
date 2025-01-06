@@ -14,16 +14,16 @@ def main() -> None:
     temp_scale = parse_args()
 
     if temp_scale is None:
-        print_wrapped(ENTER_TEMP_SCALE_STR)
+        print_wrapped(ENTER_TEMP_SCALE_PROMPT)
 
     while True:
         try:
             if temp_scale is None:
                 temp_scale = get_temp_scale()
             forecast_loop = ForecastLoop()
-            if temp_scale in CELSIUS_STRS:
+            if temp_scale in CELSIUS_INPUTS:
                 forecast_loop.celsius()
-            elif temp_scale in FAHRENHEIT_STRS:
+            elif temp_scale in FAHRENHEIT_INPUTS:
                 forecast_loop.fahrenheit()
         except KeyboardInterrupt:
             print_padding()
