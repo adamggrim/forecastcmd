@@ -102,7 +102,6 @@ def parse_forecast(url: str) -> List[str]:
     ]
 
 
-def format_forecasts(day_forecasts: list[str]) -> list[str]:
 def format_forecasts(day_forecasts: List[str]) -> List[str]:
     """
     Formats the forecast list elements for printing.
