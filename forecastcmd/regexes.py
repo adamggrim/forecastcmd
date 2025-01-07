@@ -1,4 +1,5 @@
 import re
+from typing import Pattern
 
 
 class ParsingRegexes:
@@ -17,12 +18,14 @@ class ParsingRegexes:
         TEMPS_FINDER (Pattern): Compiled regular expression object that 
             captures numbers in a forecast that are temperatures.
     """
-    NOT_TEMPS_LOOKAHEAD = (r'(?!\spercent|%|\.|\sa\.m\.|\sp\.m\.|\sto|\smph'
-                     r'|\sand|\sof\san|\sinch)')
-    AM_PM_SPACE = re.compile(r'(?<=\d)(?=am|pm)')
-    AM_PM_FORMAT = re.compile(r'(?<=\d\s(a|p))m\.?')
-    SPACES = re.compile(r'(?<=\s)\s|\s+$')
-    TEMPS_FINDER = re.compile(r'-?\d{1,3}\b' + NOT_TEMPS_LOOKAHEAD)
+    NOT_TEMPS_LOOKAHEAD: str = (
+        r'(?!\spercent|%|\.|\sa\.m\.|\sp\.m\.|\sto|\smph|\sand|\sof\san'
+        r'|\sinch)'
+    )
+    AM_PM_SPACE: Pattern = re.compile(r'(?<=\d)(?=am|pm)')
+    AM_PM_FORMAT: Pattern = re.compile(r'(?<=\d\s(a|p))m\.?')
+    SPACES: Pattern = re.compile(r'(?<=\s)\s|\s+$')
+    TEMPS_FINDER: Pattern = re.compile(r'-?\d{1,3}\b' + NOT_TEMPS_LOOKAHEAD)
 
 
 class ValidationRegexes:
@@ -35,6 +38,8 @@ class ValidationRegexes:
         zip_code (Pattern): Compiled regular expression object that 
             captures any string that is only a sequence of five digits.
     """
-    URL = re.compile(r'^https?://forecast\.weather\.gov/MapClick\.php\?'
-                        r'lat=(-?\d+\.\d+)&lon=(-?\d+\.\d+)$')
-    ZIP_CODE = re.compile(r'^\d{5}$')
+    URL: Pattern = re.compile(
+        r'^https?://forecast\.weather\.gov/MapClick\.php\?lat=(-?\d+\.\d+)&lon'
+        r'=(-?\d+\.\d+)$'
+    )
+    ZIP_CODE: Pattern = re.compile(r'^\d{5}$')
