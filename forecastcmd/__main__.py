@@ -20,7 +20,7 @@ def main() -> None:
     Initiates an instance of ForecastLoop and optionally prompts the 
         user to run the program in Fahrenheit or Celsius.
     """
-    temp_scale = parse_args()
+    temp_scale: Optional[str] = parse_args()
 
     if temp_scale is None:
         print_wrapped(ENTER_TEMP_SCALE_PROMPT)
@@ -28,8 +28,8 @@ def main() -> None:
     while True:
         try:
             if temp_scale is None:
-            forecast_loop = ForecastLoop()
                 temp_scale = prompt_for_temp_scale()
+            forecast_loop: ForecastLoop = ForecastLoop()
             if temp_scale in CELSIUS_INPUTS:
                 forecast_loop.celsius()
             elif temp_scale in FAHRENHEIT_INPUTS:

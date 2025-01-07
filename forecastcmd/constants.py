@@ -20,12 +20,14 @@ ANY_OTHER_ZIP_PROMPT: str = 'Any other zip code? (5 digits):'
 CELSIUS_INPUTS: set[str] = {'celsius', 'c'}
 
 # String printed to prompt the user to enter a temperature scale
-ENTER_TEMP_SCALE_PROMPT: str = ('Enter a temperature scale (Celsius [C] or '
-                                'Fahrenheit [F]):')
+ENTER_TEMP_SCALE_PROMPT: str = (
+    'Enter a temperature scale (Celsius [C] or Fahrenheit [F]):'
+)
 
 # String printed when the previous temperature scale input was invalid
-ENTER_VALID_TEMP_SCALE_PROMPT: str = ('Please enter Celsius (C) or Fahrenheit '
-                                      '(F):')
+ENTER_VALID_TEMP_SCALE_PROMPT: str = (
+    'Please enter Celsius (C) or Fahrenheit (F):'
+)
 
 # String printed when the previous zip code input was invalid
 ENTER_VALID_ZIP_PROMPT: str = 'Please enter a valid zip code:'

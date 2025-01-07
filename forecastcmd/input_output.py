@@ -1,5 +1,6 @@
 import os
 import textwrap
+from typing import List
 
 import requests
 
@@ -92,7 +93,7 @@ def print_padding() -> None:
     print('')
 
 
-def print_wrapped(string: str) -> None:
+def print_wrapped(text: str) -> None:
     """
     Wraps printing based on the width of the terminal and adds a 
         newline character to the start of the string.
@@ -100,10 +101,10 @@ def print_wrapped(string: str) -> None:
     Args:
         text (str): The string to print.
     """
-    terminal_size = os.get_terminal_size()[0]
-    print_size = terminal_size - 1
-    wrapped_str = textwrap.fill(string, width=print_size)
-    print('\n' + wrapped_str)
+    terminal_size: int = os.get_terminal_size()[0]
+    print_size: int = terminal_size - 1
+    wrapped_text = textwrap.fill(text, width=print_size)
+    print('\n' + wrapped_text)
 
 
 def program_exit() -> None:
@@ -124,7 +125,7 @@ def prompt_for_temp_scale() -> str:
         temp_scale: A string representing Fahrenheit or Celsius.
     """
     while True:
-        temp_scale = input().strip().lower()
+        temp_scale: str = input().strip().lower()
         if temp_scale in (NO_INPUTS | QUIT_INPUTS):
             program_exit()
         else:
@@ -154,7 +155,7 @@ def retrieve_url_from_zip() -> str:
         else:
             try:
                 validate_zip_code(zip_code)
-                url = zip_codes_dict[zip_code]
+                url: str = zip_codes_dict[zip_code]
                 validate_url(url)
             except (NoZipCodeError, InvalidZipCodeFormatError) as e:
                 print_wrapped(str(e))
@@ -177,11 +178,11 @@ def print_forecast(url: str, temp_scale: TempScale) -> None:
             forecast.
     """
     try:
-        day_forecasts = parse_forecast(url)
+        day_forecasts: List[str] = parse_forecast(url)
         if temp_scale == TempScale.CELSIUS:
-            formatted_forecasts = convert_forecasts(day_forecasts)
+            formatted_forecasts: List[str] = convert_forecasts(day_forecasts)
         else:
-            formatted_forecasts = format_forecasts(day_forecasts)
+            formatted_forecasts: List[str] = format_forecasts(day_forecasts)
         for day_forecast in formatted_forecasts:
             print_wrapped(day_forecast)
     except requests.exceptions.ConnectionError:
