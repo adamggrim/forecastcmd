@@ -5,9 +5,9 @@ from typing import List, Optional
 import requests
 from bs4 import BeautifulSoup, Tag
 
-from forecastcmd.constants import HelpMessages
-from forecastcmd.regexes import ParsingRegexes
-from forecastcmd.validation import HTMLElementNotFoundError
+from forecast_command.constants import HelpMessages
+from forecast_command.regexes import ParsingRegexes
+from forecast_command.validation import HTMLElementNotFoundError
 
 
 def parse_args() -> Optional[str]:

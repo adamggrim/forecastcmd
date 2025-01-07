@@ -1,7 +1,7 @@
-from forecastcmd.config import zip_codes_dict
-from forecastcmd.constants import (CELSIUS_INPUTS, 
+from forecast_command.config import zip_codes_dict
+from forecast_command.constants import (CELSIUS_INPUTS, 
                                    FAHRENHEIT_INPUTS)
-from forecastcmd.regexes import ValidationRegexes
+from forecast_command.regexes import ValidationRegexes
 
 
 class HTMLElementNotFoundError(Exception):

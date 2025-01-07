@@ -4,8 +4,8 @@ from typing import List
 
 import requests
 
-from forecastcmd.config import zip_codes_dict
-from forecastcmd.constants import (
+from forecast_command.config import zip_codes_dict
+from forecast_command.constants import (
     ANY_OTHER_ZIP_PROMPT, 
     ENTER_VALID_TEMP_SCALE_PROMPT, 
     ENTER_VALID_ZIP_PROMPT, 
@@ -15,13 +15,13 @@ from forecastcmd.constants import (
     QUIT_INPUTS, 
     YES_INPUTS
 )
-from forecastcmd.enums import TempScale
-from forecastcmd.parsing import (
+from forecast_command.enums import TempScale
+from forecast_command.parsing import (
     convert_forecasts, 
     format_forecasts, 
     parse_forecast
 )
-from forecastcmd.validation import (
+from forecast_command.validation import (
     HTMLElementNotFoundError, 
     InvalidTempScaleError, 
     InvalidUrlFormatError, 
@@ -31,7 +31,7 @@ from forecastcmd.validation import (
     NoZipCodeError, 
     ZipCodeNotFoundError
 )
-from forecastcmd.validation import (
+from forecast_command.validation import (
     validate_temp_scale, 
     validate_url, 
     validate_zip_code

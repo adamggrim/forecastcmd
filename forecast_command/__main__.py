@@ -1,18 +1,18 @@
 from typing import Optional
 
-from forecastcmd.constants import (
+from forecast_command.constants import (
     CELSIUS_INPUTS, 
     ENTER_TEMP_SCALE_PROMPT, 
     FAHRENHEIT_INPUTS
 )
-from forecastcmd.input_output import (
+from forecast_command.input_output import (
     ForecastLoop, 
     print_padding, 
     print_wrapped,
     program_exit, 
     prompt_for_temp_scale
 )
-from forecastcmd.parsing import parse_args
+from forecast_command.parsing import parse_args
 
 
 def main() -> None:

@@ -1,6 +1,6 @@
 # Forecast Command
 
-`forecastcmd` is a Python package for retrieving forecasts from NOAA (National Oceanic and Atmospheric Administration) and printing them to the console. For a given zip code, `forecastcmd` can print a seven-day forecast in Fahrenheit or Celsius.
+`forecast-command` is a Python package for retrieving forecasts from NOAA (National Oceanic and Atmospheric Administration) and printing them to the console. For a given zip code, `forecast-command` can print a seven-day forecast in Fahrenheit or Celsius.
 
 ## Requirements
 
@@ -8,19 +8,19 @@
 
 ## Dependencies
 
-`forecastcmd` requires the following Python libraries:
+`forecast-command` requires the following Python libraries:
 
 - `beautifulsoup4`: For parsing HTML data retrieved from weather.gov
 - `requests`: For making HTTP requests to retrieve forecast data from weather.gov
-- `setuptools`: For building and installing the `forecastcmd` package, and for implementing command-line functionality using entry points
+- `setuptools`: For building and installing the `forecast-command` package, and for implementing command-line functionality using entry points
 
 ## Example
 
-This example demonstrates how to retrieve a weather forecast using `forecastcmd`.
+This example demonstrates how to retrieve a weather forecast using `forecast-command`.
 
 1. **Run the command**
 
-    Once `forecastcmd` is installed, call `forecast` from the command line.
+    Once `forecast-command` is installed, call `forecast` from the command line.
 
     For a forecast in Celsius, you can also call `forecast -c` from the command line. For a forecast in Fahrenheit, you can call `forecast -f`.
 
@@ -90,10 +90,10 @@ This example demonstrates how to retrieve a weather forecast using `forecastcmd`
 ## Structure
 
 ```
-forecastcmd/
+forecast_command/
 └── data/
 |   └── zip_codes_forecast_urls_dict.json: Maps zip code strings to weather.gov forecast URL strings
-├── __init__.py: File for recognizing forecastcmd as a package
+├── __init__.py: File for recognizing the package
 ├── __main__.py: File for running the forecast command
 ├── config.py: Opens the JSON file for use in the package
 ├── constants.py: Defines constants used throughout the package
@@ -106,7 +106,7 @@ forecastcmd/
 
 ## Usage
 
-Follow these steps to run `forecastcmd`:
+Follow these steps to run `forecast-command`:
 
 1. **Install Python**: Verify that you have Python 3.6 or later. You can install Python at `https://www.python.org/downloads/`.
 2. **Review dependencies**: Make sure the required Python packages are installed: `beautifulsoup4`, `requests` and `setuptools`.
@@ -125,12 +125,12 @@ Follow these steps to run `forecastcmd`:
     pip3 install beautifulsoup4
     ```
 
-3. **Install the package**: Install `forecastcmd` using pip.
+3. **Install the package**: Install `forecast-command` using pip.
 
     On macOS:
 
     ```
-    pip3 install git+https://github.com/adamggrim/forecastcmd.git
+    pip3 install git+https://github.com/adamggrim/forecast-command.git
     ```
 
 4. **Run the program**: Execute the program by calling `forecast`, `forecast -c` (for Celsius) or `forecast -f` (for Fahrenheit) from the command line.
@@ -141,19 +141,19 @@ If the console cannot find the `forecast` command when you try to run it from th
 
 To resolve this, follow these steps:
 
-1. Find the installed location of the `forecastcmd` package using pip's `show` command.
+1. Find the installed location of the `forecast-command` package using pip's `show` command.
 
     On macOS:
     ```
-    pip3 show forecastcmd
+    pip3 show forecast-command
     ```
 
-    The location of `forecastcmd` will be listed in the command's output. For example:
+    The location of `forecast-command` will be listed in the command's output. For example:
     ```
     Location: /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages
     ```
 
-2. Once you have determined the location of `forecastcmd`, find the installed location of the `forecast` command file in your parent Python folder.
+2. Once you have determined the location of `forecast-command`, find the installed location of the `forecast` command file in your parent Python folder.
 
     On macOS:
     ```
