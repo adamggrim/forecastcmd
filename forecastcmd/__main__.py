@@ -1,8 +1,17 @@
-from forecastcmd.input_output import (ForecastLoop, print_wrapped, 
-                                      print_padding, program_exit, 
-                                      get_temp_scale)
-from forecastcmd.constants import (CELSIUS_STRS, ENTER_TEMP_SCALE_STR, 
-                                   FAHRENHEIT_STRS)
+from typing import Optional
+
+from forecastcmd.constants import (
+    CELSIUS_INPUTS, 
+    ENTER_TEMP_SCALE_PROMPT, 
+    FAHRENHEIT_INPUTS
+)
+from forecastcmd.input_output import (
+    ForecastLoop, 
+    print_padding, 
+    print_wrapped,
+    program_exit, 
+    prompt_for_temp_scale
+)
 from forecastcmd.parsing import parse_args
 
 

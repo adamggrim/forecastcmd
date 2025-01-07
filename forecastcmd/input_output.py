@@ -4,25 +4,37 @@ import textwrap
 import requests
 
 from forecastcmd.config import zip_codes_dict
-from forecastcmd.constants import (ANY_OTHER_ZIP_PROMPT, 
-                                   ENTER_VALID_TEMP_SCALE_PROMPT, 
-                                   ENTER_VALID_ZIP_PROMPT, 
-                                   ENTER_ZIP_PROMPT, 
-                                   EXIT_PROMPT, 
-                                   NO_INPUTS, 
-                                   QUIT_INPUTS, 
-                                   YES_INPUTS)
+from forecastcmd.constants import (
+    ANY_OTHER_ZIP_PROMPT, 
+    ENTER_VALID_TEMP_SCALE_PROMPT, 
+    ENTER_VALID_ZIP_PROMPT, 
+    ENTER_ZIP_PROMPT, 
+    EXIT_PROMPT, 
+    NO_INPUTS, 
+    QUIT_INPUTS, 
+    YES_INPUTS
+)
 from forecastcmd.enums import TempScale
-from forecastcmd.parsing import (parse_forecast, format_forecasts, 
-                                convert_forecasts)
-from forecastcmd.validation import (HTMLElementNotFoundError, 
-                                    InvalidTempScaleError, 
-                                    InvalidUrlFormatError,
-                                    InvalidZipCodeFormatError, 
-                                    NoDataForZipCodeError, 
-                                    NoTempScaleError, NoZipCodeError, 
-                                    ZipCodeNotFoundError, validate_temp_scale,
-                                    validate_zip_code, validate_url)
+from forecastcmd.parsing import (
+    convert_forecasts, 
+    format_forecasts, 
+    parse_forecast
+)
+from forecastcmd.validation import (
+    HTMLElementNotFoundError, 
+    InvalidTempScaleError, 
+    InvalidUrlFormatError, 
+    InvalidZipCodeFormatError, 
+    NoDataForZipCodeError, 
+    NoTempScaleError, 
+    NoZipCodeError, 
+    ZipCodeNotFoundError
+)
+from forecastcmd.validation import (
+    validate_temp_scale, 
+    validate_url, 
+    validate_zip_code
+)
 
 
 class ForecastLoop:
