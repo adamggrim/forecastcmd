@@ -28,8 +28,8 @@ def main() -> None:
     while True:
         try:
             if temp_scale is None:
-                temp_scale = get_temp_scale()
             forecast_loop = ForecastLoop()
+                temp_scale = prompt_for_temp_scale()
             if temp_scale in CELSIUS_INPUTS:
                 forecast_loop.celsius()
             elif temp_scale in FAHRENHEIT_INPUTS:

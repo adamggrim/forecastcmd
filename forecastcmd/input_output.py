@@ -64,7 +64,7 @@ class ForecastLoop:
         """
         # While loop to deploy functions and get input from the user
         while True:
-            url = get_url()
+            url: str = retrieve_url_from_zip()
             print_forecast(url, temp_scale)
             print_wrapped(ANY_OTHER_ZIP_PROMPT)
     
@@ -116,7 +116,7 @@ def program_exit() -> None:
     exit()
 
 
-def get_temp_scale() -> str:
+def prompt_for_temp_scale() -> str:
     """
     Requests a valid temperature scale.
 
@@ -137,7 +137,7 @@ def get_temp_scale() -> str:
                 return temp_scale
 
 
-def get_url() -> str:
+def retrieve_url_from_zip() -> str:
     """
     Requests a valid zip code that matches a zip code in the JSON file 
         and returns the matching URL.
