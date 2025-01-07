@@ -18,13 +18,25 @@ def parse_args() -> Optional[str]:
         Optional[str]: A string representing a specified temperature 
             scale, otherwise None.
     """
-    parser = argparse.ArgumentParser(description=HelpMessages.DESCRIPTION)
-    group = parser.add_mutually_exclusive_group()
-    group.add_argument('-c', '--celsius', action='store_true', 
-                       help=HelpMessages.CELSIUS)
-    group.add_argument('-f', '--fahrenheit', action='store_true', 
-                        help=HelpMessages.FAHRENHEIT)
-    args = parser.parse_args()
+    parser: argparse.ArgumentParser = argparse.ArgumentParser(
+        description=HelpMessages.DESCRIPTION
+    )
+    group: argparse._MutuallyExclusiveGroup = (
+        parser.add_mutually_exclusive_group()
+    )
+    group.add_argument(
+        '-c', 
+        '--celsius', 
+        action='store_true', 
+        help=HelpMessages.CELSIUS
+    )
+    group.add_argument(
+        '-f', 
+        '--fahrenheit', 
+        action='store_true', 
+        help=HelpMessages.FAHRENHEIT
+    )
+    args: argparse.Namespace = parser.parse_args()
     if args.celsius:
         return 'celsius'
     elif args.fahrenheit:
@@ -77,12 +89,17 @@ def parse_forecast(url: str) -> List[str]:
         for forecast_text in soup.select('div[class *= "forecast-text"]')
     ]
     if not forecasts:
-        raise HTMLElementNotFoundError('Forecast text not found for that zip '
-                                       'code.')
-    # Reverse the order of the strings so the current day appears 
-    # closest to the console prompt in the output.
-    return [day + ": " + forecast for day, forecast in zip(days[::-1], 
-                                                           forecasts[::-1])]
+        raise HTMLElementNotFoundError(
+            'Forecast text not found for that zip code.'
+        )
+    # Reverse the order of the strings so the current day appears closest to 
+    # the console prompt in the output.
+    return [
+        day + ": " + forecast 
+        for day, forecast in zip(
+            days[::-1], forecasts[::-1]
+        )
+    ]
 
 
 def format_forecasts(day_forecasts: list[str]) -> list[str]:

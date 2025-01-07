@@ -157,11 +157,17 @@ def retrieve_url_from_zip() -> str:
                 validate_zip_code(zip_code)
                 url: str = zip_codes_dict[zip_code]
                 validate_url(url)
-            except (NoZipCodeError, InvalidZipCodeFormatError) as e:
+            except (
+                NoZipCodeError, 
+                InvalidZipCodeFormatError
+            ) as e:
                 print_wrapped(str(e))
                 print_wrapped(ENTER_VALID_ZIP_PROMPT)
-            except (ZipCodeNotFoundError, NoDataForZipCodeError, 
-                    InvalidUrlFormatError) as e:
+            except (
+                ZipCodeNotFoundError, 
+                NoDataForZipCodeError, 
+                InvalidUrlFormatError
+            ) as e:
                 print_wrapped(str(e))
                 print_wrapped()
             else:
