@@ -10,9 +10,9 @@ from forecast_command.constants import (
     ENTER_VALID_TEMP_SCALE_PROMPT, 
     ENTER_VALID_ZIP_PROMPT, 
     ENTER_ZIP_PROMPT, 
-    EXIT_PROMPT, 
+    EXIT_MESSAGE, 
     NO_INPUTS, 
-    QUIT_INPUTS, 
+    EXIT_INPUTS, 
     YES_INPUTS
 )
 from forecast_command.enums import TempScale
@@ -112,7 +112,7 @@ def program_exit() -> None:
     Prints a message that the program is exiting, then exits the 
         program.
     """
-    print_wrapped(EXIT_PROMPT)
+    print_wrapped(EXIT_MESSAGE)
     print_padding()
     exit()
 
@@ -126,7 +126,7 @@ def prompt_for_temp_scale() -> str:
     """
     while True:
         temp_scale: str = input().strip().lower()
-        if temp_scale in (NO_INPUTS | QUIT_INPUTS):
+        if temp_scale in (NO_INPUTS | EXIT_INPUTS):
             program_exit()
         else:
             try:
@@ -148,7 +148,7 @@ def retrieve_url_from_zip() -> str:
     """
     while True:
         zip_code = input().strip().lower()
-        if zip_code in (NO_INPUTS | QUIT_INPUTS):
+        if zip_code in (NO_INPUTS | EXIT_INPUTS):
             program_exit()
         elif zip_code in YES_INPUTS:
             print_wrapped(ENTER_VALID_ZIP_PROMPT)
