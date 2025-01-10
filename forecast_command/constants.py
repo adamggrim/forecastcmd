@@ -3,15 +3,15 @@ class HelpMessages:
     Help message strings for command-line arguments.
 
     Attributes:
-        DESCRIPTION (STR): Description for temperature scale arguments
+        DESCRIPTION: Description for temperature scale arguments
 
-        CELSIUS (STR): Help message for -c/--celsius argument
-        FAHRENHEIT (STR): Help message for -f/--fahrenheit argument
+        CELSIUS: Help message for -c/--celsius argument
+        FAHRENHEIT: Help message for -f/--fahrenheit argument
     """
     DESCRIPTION = 'Make an optional specification for temperature scale.'
 
-    CELSIUS = 'get the forecast in Celsius'
-    FAHRENHEIT = 'get the forecast in Fahrenheit'
+    CELSIUS: str = 'get the forecast in Celsius'
+    FAHRENHEIT: str = 'get the forecast in Fahrenheit'
 
 # String printed to prompt the user for another zip code
 ANY_OTHER_ZIP_PROMPT: str = 'Any other zip code? (5 digits):'

@@ -50,7 +50,7 @@ def f2c(fahrenheit_temps: List[str]) -> List[str]:
     Converts a list of Fahrenheit temperature strings to Celsius.
 
     Args:
-        fahrenheit_temps (List[str]): A list of Fahrenheit temperature 
+        fahrenheit_temps: A list of Fahrenheit temperature 
             strings.
     
     Returns:
@@ -64,7 +64,7 @@ def parse_forecast(url: str) -> List[str]:
     Extracts the forecast from the HTML for a given URL.
 
     Args:
-        url (str): The url to access for weather data.
+        url: The url to access for weather data.
 
     Returns:
         List[str]: A list of strings pairing each day string with a 
@@ -107,12 +107,11 @@ def format_forecasts(day_forecasts: List[str]) -> List[str]:
     Formats the forecast list elements for printing.
 
     Args:
-        day_forecasts (List[str]): A list of strings representing days 
-            and their forecasts, beginning with the most immediate 
-            forecast.
+        day_forecasts: A list of strings representing days and their 
+            forecasts, beginning with the most immediate forecast.
 
     Returns:
-        day_forecasts (List[str]): A list of reformatted strings.
+        day_forecasts: A list of reformatted strings.
     """
     for index, day_forecast in enumerate(day_forecasts):
         # Remove extra spaces.
@@ -130,13 +129,12 @@ def convert_forecasts(day_forecasts: List[str]) -> List[str]:
     Finds forecast temperatures and converts them to Celsius.
 
     Args:
-        day_forecasts (List[str]): A list of strings representing days 
-            and their forecasts, beginning with the most immediate 
-            forecast.
+        day_forecasts: A list of strings representing days and their 
+            forecasts, beginning with the most immediate forecast.
 
     Returns:
-        formatted_forecasts (List[str]): A list of strings with the  
-            temperatures converted to Celsius.
+        formatted_forecasts: A list of strings with the temperatures 
+            converted to Celsius.
     """
     formatted_forecasts: List[str] = format_forecasts(day_forecasts)
     for index, day_forecast in enumerate(formatted_forecasts):

@@ -99,7 +99,7 @@ def print_wrapped(text: str) -> None:
         newline character to the start of the string.
 
     Args:
-        text (str): The string to print.
+        text: The string to print.
     """
     terminal_size: int = os.get_terminal_size()[0]
     print_size: int = terminal_size - 1
@@ -144,7 +144,7 @@ def retrieve_url_from_zip() -> str:
         and returns the matching URL.
     
     Returns:
-        url (str): The url for the inputted zip code.
+        url: The url for the inputted zip code.
     """
     while True:
         zip_code = input().strip().lower()
@@ -179,9 +179,8 @@ def print_forecast(url: str, temp_scale: TempScale) -> None:
     Prints forecast data from a given URL to the console.
 
     Args:
-        url (str): The URL for accessing weather data.
-        temp_scale (TempScale): The temperature scale to apply to the 
-            forecast.
+        url: The URL for accessing weather data.
+        temp_scale: The temperature scale to apply to the forecast.
     """
     try:
         day_forecasts: List[str] = parse_forecast(url)

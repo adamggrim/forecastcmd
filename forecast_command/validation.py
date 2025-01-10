@@ -1,6 +1,7 @@
 from forecast_command.config import zip_codes_dict
-from forecast_command.constants import (CELSIUS_INPUTS, 
-                                   FAHRENHEIT_INPUTS)
+from forecast_command.constants import (
+    CELSIUS_INPUTS, 
+    FAHRENHEIT_INPUTS)
 from forecast_command.regexes import ValidationRegexes
 
 
@@ -39,8 +40,8 @@ class NoZipCodeError(Exception):
 
 
 class ZipCodeNotFoundError(Exception):
-    """Exception raised when the zip code string is not found in the given 
-        JSON file."""
+    """Exception raised when the zip code string is not found in the 
+        given JSON file."""
 
 
 def validate_temp_scale(temp_scale: str) -> None:
@@ -49,7 +50,7 @@ def validate_temp_scale(temp_scale: str) -> None:
         string is in the sets CELSIUS_INPUTS or FAHRENHEIT_INPUTS.
     
     Args:
-        temp_scale (str): A string representing a temperature scale.
+        temp_scale: A string representing a temperature scale.
     """
     if temp_scale == '':
         raise NoTempScaleError('No temperature scale entered.')
@@ -64,7 +65,7 @@ def validate_zip_code(zip_code: str) -> None:
         whether the string is only a sequence of five digits.
 
     Args:
-        zip_code (str): A string representing a zip code.
+        zip_code: A string representing a zip code.
     """
     if zip_code == '':
         raise NoZipCodeError('No zip code entered.')
@@ -82,7 +83,7 @@ def validate_url(url: str) -> None:
         whether the string matches weather.gov's forecast URL syntax.
     
     Args:
-        url (str): A string representing a URL.
+        url: A string representing a URL.
     """
     if not ValidationRegexes.URL.match(url):
         raise InvalidUrlFormatError('Invalid URL for that zip code.')
