@@ -8,7 +8,7 @@ class HelpMessages:
         CELSIUS: Help message for -c/--celsius argument
         FAHRENHEIT: Help message for -f/--fahrenheit argument
     """
-    DESCRIPTION = 'Make an optional specification for temperature scale.'
+    DESCRIPTION: str = 'Make an optional specification for temperature scale.'
 
     CELSIUS: str = 'get the forecast in Celsius'
     FAHRENHEIT: str = 'get the forecast in Fahrenheit'
