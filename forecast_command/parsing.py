@@ -1,6 +1,5 @@
 import argparse
 import re
-from typing import List, Optional
 
 import requests
 from bs4 import BeautifulSoup, Tag
@@ -10,12 +9,12 @@ from forecast_command.regexes import ParsingRegexes
 from forecast_command.validation import HTMLElementNotFoundError
 
 
-def parse_args() -> Optional[str]:
+def parse_args() -> str | None:
     """
     Parses command-line arguments for a temperature scale specification.
 
     Returns:
-        Optional[str]: A string representing a specified temperature 
+        str | None: A string representing a specified temperature 
             scale, otherwise None.
     """
     parser: argparse.ArgumentParser = argparse.ArgumentParser(
@@ -45,21 +44,21 @@ def parse_args() -> Optional[str]:
         return None
 
 
-def f2c(fahrenheit_temps: List[str]) -> List[str]:
+def f2c(fahrenheit_temps: list[str]) -> list[str]:
     """
     Converts a list of Fahrenheit temperature strings to Celsius.
 
     Args:
         fahrenheit_temps: A list of Fahrenheit temperature 
             strings.
-    
+
     Returns:
-        List[str]: A list of Celsius temperature strings.
+        list[str]: A list of Celsius temperature strings.
     """
     return [str(round((int(temp) - 32) * 5 / 9)) for temp in fahrenheit_temps]
 
 
-def parse_forecast(url: str) -> List[str]:
+def parse_forecast(url: str) -> list[str]:
     """
     Extracts the forecast from the HTML for a given URL.
 
@@ -67,24 +66,24 @@ def parse_forecast(url: str) -> List[str]:
         url: The url to access for weather data.
 
     Returns:
-        List[str]: A list of strings pairing each day string with a 
+        list[str]: A list of strings pairing each day string with a 
             forecast string.
     """
     nws_page: requests.Response = requests.get(url)
     soup: BeautifulSoup = BeautifulSoup(nws_page.content, 'html.parser')
-    forecast_body: Optional[Tag] = soup.find(
+    forecast_body: Tag | None = soup.find(
         'div', {'id': 'detailed-forecast-body'}
     )
     if forecast_body is None:
         raise HTMLElementNotFoundError(
             'Forecast body not found for that zip code.'
         )
-    days: List[str] = [b.string for b in forecast_body.find_all('b')]
+    days: list[str] = [b.string for b in forecast_body.find_all('b')]
     if not days:
         raise HTMLElementNotFoundError(
             'Forecast days not found for that zip code.'
         )
-    forecasts: List[str] = [
+    forecasts: list[str] = [
         forecast_text.get_text() 
         for forecast_text in soup.select('div[class *= "forecast-text"]')
     ]
@@ -102,7 +101,7 @@ def parse_forecast(url: str) -> List[str]:
     ]
 
 
-def format_forecasts(day_forecasts: List[str]) -> List[str]:
+def format_forecasts(day_forecasts: list[str]) -> list[str]:
     """
     Formats the forecast list elements for printing.
 
@@ -124,7 +123,7 @@ def format_forecasts(day_forecasts: List[str]) -> List[str]:
     return day_forecasts
 
 
-def convert_forecasts(day_forecasts: List[str]) -> List[str]:
+def convert_forecasts(day_forecasts: list[str]) -> list[str]:
     """
     Finds forecast temperatures and converts them to Celsius.
 
@@ -136,14 +135,14 @@ def convert_forecasts(day_forecasts: List[str]) -> List[str]:
         formatted_forecasts: A list of strings with the temperatures 
             converted to Celsius.
     """
-    formatted_forecasts: List[str] = format_forecasts(day_forecasts)
+    formatted_forecasts: list[str] = format_forecasts(day_forecasts)
     for index, day_forecast in enumerate(formatted_forecasts):
         # Find all Fahrenheit temperatures and put them in a list.
-        fahrenheit_temps: List[str] = (
+        fahrenheit_temps: list[str] = (
             ParsingRegexes.TEMPS_FINDER.findall(day_forecast)
         )
         # Convert the list of Fahrenheit temperatures to Celsius.
-        celsius_temps: List[str] = f2c(fahrenheit_temps)
+        celsius_temps: list[str] = f2c(fahrenheit_temps)
         # Loop over Fahrenheit temperatures and substitute with Celsius.
         for temp_index, temp in enumerate(fahrenheit_temps):
             day_forecast: str = re.sub(

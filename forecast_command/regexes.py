@@ -1,5 +1,4 @@
 import re
-from typing import Pattern
 
 
 class ParsingRegexes:
@@ -22,10 +21,12 @@ class ParsingRegexes:
         r'(?!\spercent|%|\.|\sa\.m\.|\sp\.m\.|\sto|\smph|\sand|\sof\san'
         r'|\sinch)'
     )
-    AM_PM_SPACE: Pattern = re.compile(r'(?<=\d)(?=am|pm)')
-    AM_PM_FORMAT: Pattern = re.compile(r'(?<=\d\s(a|p))m\.?')
-    SPACES: Pattern = re.compile(r'(?<=\s)\s|\s+$')
-    TEMPS_FINDER: Pattern = re.compile(r'-?\d{1,3}\b' + NOT_TEMPS_LOOKAHEAD)
+    AM_PM_SPACE: re.Pattern[str] = re.compile(r'(?<=\d)(?=am|pm)')
+    AM_PM_FORMAT: re.Pattern[str] = re.compile(r'(?<=\d\s(a|p))m\.?')
+    SPACES: re.Pattern[str] = re.compile(r'(?<=\s)\s|\s+$')
+    TEMPS_FINDER: re.Pattern[str] = re.compile(
+        r'-?\d{1,3}\b' + NOT_TEMPS_LOOKAHEAD
+    )
 
 
 class ValidationRegexes:
@@ -38,8 +39,8 @@ class ValidationRegexes:
         zip_code: Compiled regular expression object that captures any 
             string that is only a sequence of five digits.
     """
-    URL: Pattern = re.compile(
+    URL: re.Pattern[str] = re.compile(
         r'^https?://forecast\.weather\.gov/MapClick\.php\?lat=(-?\d+\.\d+)&lon'
         r'=(-?\d+\.\d+)$'
     )
-    ZIP_CODE: Pattern = re.compile(r'^\d{5}$')
+    ZIP_CODE: re.Pattern[str] = re.compile(r'^\d{5}$')

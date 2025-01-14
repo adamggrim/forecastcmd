@@ -1,5 +1,3 @@
-from typing import Optional
-
 from forecast_command.constants import (
     CELSIUS_INPUTS, 
     ENTER_TEMP_SCALE_PROMPT, 
@@ -20,7 +18,7 @@ def main() -> None:
     Initiates an instance of ForecastLoop and optionally prompts the 
         user to run the program in Fahrenheit or Celsius.
     """
-    temp_scale: Optional[str] = parse_args()
+    temp_scale: str | None = parse_args()
 
     if temp_scale is None:
         print_wrapped(ENTER_TEMP_SCALE_PROMPT)

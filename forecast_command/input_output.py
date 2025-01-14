@@ -1,6 +1,5 @@
 import os
 import textwrap
-from typing import List
 
 import requests
 
@@ -47,7 +46,7 @@ class ForecastLoop:
         """
         Initializes a new InputLoop instance by prompting the user to 
             enter a zip code.
-
+        
         Args:
             self: The instance of the InputLoop class.
         """
@@ -97,13 +96,13 @@ def print_wrapped(text: str) -> None:
     """
     Wraps printing based on the width of the terminal and adds a 
         newline character to the start of the string.
-
+    
     Args:
         text: The string to print.
     """
     terminal_size: int = os.get_terminal_size()[0]
     print_size: int = terminal_size - 1
-    wrapped_text = textwrap.fill(text, width=print_size)
+    wrapped_text: str = textwrap.fill(text, width=print_size)
     print('\n' + wrapped_text)
 
 
@@ -177,17 +176,17 @@ def retrieve_url_from_zip() -> str:
 def print_forecast(url: str, temp_scale: TempScale) -> None:
     """
     Prints forecast data from a given URL to the console.
-
+    
     Args:
         url: The URL for accessing weather data.
         temp_scale: The temperature scale to apply to the forecast.
     """
     try:
-        day_forecasts: List[str] = parse_forecast(url)
+        day_forecasts: list[str] = parse_forecast(url)
         if temp_scale == TempScale.CELSIUS:
-            formatted_forecasts: List[str] = convert_forecasts(day_forecasts)
+            formatted_forecasts: list[str] = convert_forecasts(day_forecasts)
         else:
-            formatted_forecasts: List[str] = format_forecasts(day_forecasts)
+            formatted_forecasts: list[str] = format_forecasts(day_forecasts)
         for day_forecast in formatted_forecasts:
             print_wrapped(day_forecast)
     except requests.exceptions.ConnectionError:

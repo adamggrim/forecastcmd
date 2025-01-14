@@ -1,6 +1,5 @@
 import json
-import os 
-from typing import Dict
+import os
 
 # Get the directory of the current file.
 file_dir: str = os.path.dirname(__file__) 
@@ -12,4 +11,4 @@ json_file_path: str = os.path.join(
 
 # Load the JSON data, which pairs a forecast URL with each zip code.
 with open(json_file_path, 'r') as json_file:
-    zip_codes_dict: Dict[str, str] = json.load(json_file)
+    zip_codes_dict: dict[str, str] = json.load(json_file)
