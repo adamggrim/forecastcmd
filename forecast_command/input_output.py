@@ -143,8 +143,19 @@ def retrieve_url_from_zip() -> str:
         and returns the matching URL.
     
     Returns:
-        url: The url for the inputted zip code.
+        url: The url for the zip code input.
     """
+    def handle_zip_code_error(e: Exception, prompt: str) -> None:
+        """
+        Handles exceptions related to ZIP code processing, printing an 
+            error message and prompt.
+
+        Args:
+            e: The raised exception.
+            prompt: The prompt to print.
+        """
+        print_wrapped(str(e))
+        print_wrapped(prompt)
     while True:
         zip_code = input().strip().lower()
         if zip_code in (NO_INPUTS | EXIT_INPUTS):
@@ -160,15 +171,13 @@ def retrieve_url_from_zip() -> str:
                 NoZipCodeError, 
                 InvalidZipCodeFormatError
             ) as e:
-                print_wrapped(str(e))
-                print_wrapped(ENTER_VALID_ZIP_PROMPT)
+                handle_zip_code_error(str(e), ENTER_VALID_ZIP_PROMPT)
             except (
                 ZipCodeNotFoundError, 
                 NoDataForZipCodeError, 
                 InvalidUrlFormatError
             ) as e:
-                print_wrapped(str(e))
-                print_wrapped()
+                handle_zip_code_error(str(e), ANY_OTHER_ZIP_PROMPT)
             else:
                 return url
 
