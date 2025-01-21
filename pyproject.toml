@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=43.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "forecast-command"
+version = "1.0"
+description = "Package for retrieving weather forecasts from NOAA"
+readme = "README.md"
+keywords = ["weather", "forecast", "celsius", "fahrenheit"]
+license = {text = "MIT"}
+authors = [
+  { name = "Adam Grim" }
+]
+dependencies = [
+    "beautifulsoup4",
+    "requests",
+]
+requires-python = ">=3.9"
+
+[project.optional-dependencies]
+
+[project.urls]
+"Source" = "https://github.com/adamggrim/forecast-command"
+
+[project.scripts]
+forecast = "forecast_command.__main__:main"
+
+[tool.setuptools]
+packages = ["forecast_command"]
+
+[tool.setuptools.package-data]
+forecast_command = ["data/zip_codes_forecast_urls.json"]
