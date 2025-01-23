@@ -58,6 +58,20 @@ def f2c(fahrenheit_temps: list[str]) -> list[str]:
     return [str(round((int(temp) - 32) * 5 / 9)) for temp in fahrenheit_temps]
 
 
+def mph_to_kmh(mph_speeds: list[str]) -> list[str]:
+    """
+    Converts a list of miles per hour (mph) wind speed strings to 
+        kilometers per hour (km/h).
+
+    Args:
+        mph_speeds: A list of wind speed strings in mph.
+
+    Returns:
+        list[str]: A list of wind speed strings in km/h.
+    """
+    return [str(round(float(speed) * 1.60934)) for speed in mph_speeds]
+
+
 def parse_forecast(url: str) -> list[str]:
     """
     Extracts the forecast from the HTML for a given URL.
