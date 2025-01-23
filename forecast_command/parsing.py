@@ -139,7 +139,8 @@ def format_forecasts(day_forecasts: list[str]) -> list[str]:
 
 def convert_forecasts(day_forecasts: list[str]) -> list[str]:
     """
-    Finds forecast temperatures and converts them to Celsius.
+    Finds forecast temperatures and wind speeds and converts them to 
+        Celsius and kilometers per hour (km/h).
 
     Args:
         day_forecasts: A list of strings representing days and their 
@@ -147,7 +148,7 @@ def convert_forecasts(day_forecasts: list[str]) -> list[str]:
 
     Returns:
         formatted_forecasts: A list of strings with the temperatures 
-            converted to Celsius.
+            converted to Celsius and wind speeds converted to km/h.
     """
     formatted_forecasts: list[str] = format_forecasts(day_forecasts)
     for index, day_forecast in enumerate(formatted_forecasts):
@@ -162,6 +163,16 @@ def convert_forecasts(day_forecasts: list[str]) -> list[str]:
             day_forecast: str = re.sub(
                 rf'-?{temp}\b{ParsingRegexes.NOT_TEMPS_LOOKAHEAD}', 
                 celsius_temps[temp_index], day_forecast
+            )
+        # Find all mph wind speeds and put them in a list.
+        mph_winds: list[str] = (
+            ParsingRegexes.WIND_FINDER.findall(day_forecast)
+        )
+        kmh_winds: list[str] = mph_to_kmh(mph_winds)
+        for wind_index, mph_wind in enumerate(mph_winds):
+            day_forecast: str = re.sub(
+                rf'{mph_wind}{ParsingRegexes.WIND_LOOKAHEAD}', 
+                kmh_winds[wind_index], day_forecast
             )
         formatted_forecasts[index] = day_forecast
     return formatted_forecasts
