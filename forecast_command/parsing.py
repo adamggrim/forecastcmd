@@ -44,6 +44,34 @@ def parse_args() -> str | None:
         return None
 
 
+def number_words_to_numbers(text: str) -> str:
+    """
+    Converts number words in a string to number substrings.
+
+    Args:
+        text: A string containing number words.
+
+    Returns:
+        str: The input string with number words converted to number 
+            substrings.
+    """
+    number_words = {
+        'zero': '0', 
+        'one': '1', 
+        'two': '2', 
+        'three': '3', 
+        'four': '4', 
+        'five': '5', 
+        'six': '6', 
+        'seven': '7', 
+        'eight': '8', 
+        'nine': '9', 
+    }
+    for word, number in number_words.items():
+        text = re.sub(rf'\b{word}\b', number, text)
+    return text
+
+
 def f2c(fahrenheit_temps: list[str]) -> list[str]:
     """
     Converts a list of Fahrenheit temperature strings to Celsius.
