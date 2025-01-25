@@ -24,7 +24,7 @@ class ParsingRegexes:
             duplicate spaces and trailing whitespace.
     """
     NOT_TEMPS_LOOKAHEAD: str = (
-        r'(?!\spercent|%|\.|\sa\.m\.|\sp\.m\.|\sto|\smph|\sand|\sof\san'
+        r'(?!\spercent|%|\sa\.m\.|\sp\.m\.|\sto|\smph|\sand|\sof\san'
         r'|\sinch)'
     )
     TEMPS_FINDER: re.Pattern[str] = re.compile(
