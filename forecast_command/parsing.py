@@ -70,6 +70,23 @@ def number_words_to_numerals(text: str) -> str:
     }
     for word, number in number_words.items():
         text = re.sub(rf'\b{word}\b', number, text)
+def numerals_to_number_words(text: str) -> str:
+    """
+    Converts the numbers 0 and 0.5 in a string to number words.
+
+    Args:
+        text: A string containing the numbers 1, 0 or 0.5.
+
+    Returns:
+        str: The input string with the numbers 1, 0 and 0.5 converted 
+            to number words.
+    """
+    numbers_words: dict[str, str] = {
+        '0.5': 'a half', 
+        '0': 'zero', 
+    }
+    for number, number_word in numbers_words.items():
+        text = re.sub(rf'\b{number}\b', number_word, text)
     return text
 
 
