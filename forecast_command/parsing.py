@@ -55,7 +55,8 @@ def number_words_to_numbers(text: str) -> str:
         str: The input string with number words converted to number 
             substrings.
     """
-    number_words = {
+    number_words: dict[str, str] = {
+        'a half': '0.5', 
         'zero': '0', 
         'one': '1', 
         'two': '2', 
