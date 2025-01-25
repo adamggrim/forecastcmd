@@ -44,7 +44,7 @@ def parse_args() -> str | None:
         return None
 
 
-def number_words_to_numbers(text: str) -> str:
+def number_words_to_numerals(text: str) -> str:
     """
     Converts number words in a string to number substrings.
 
@@ -181,17 +181,18 @@ def convert_forecasts(day_forecasts: list[str]) -> list[str]:
     """
     formatted_forecasts: list[str] = format_forecasts(day_forecasts)
     for index, day_forecast in enumerate(formatted_forecasts):
+        numerals_day_forecast = number_words_to_numerals(day_forecast)
         # Find all Fahrenheit temperatures and put them in a list.
         fahrenheit_temps: list[str] = (
-            ParsingRegexes.TEMPS_FINDER.findall(day_forecast)
+            ParsingRegexes.TEMPS_FINDER.findall(numerals_day_forecast)
         )
         # Convert the list of Fahrenheit temperatures to Celsius.
         celsius_temps: list[str] = f2c(fahrenheit_temps)
         # Loop over Fahrenheit temperatures and substitute with Celsius.
         for temp_index, temp in enumerate(fahrenheit_temps):
-            day_forecast: str = re.sub(
+            numerals_day_forecast: str = re.sub(
                 rf'-?{temp}\b{ParsingRegexes.NOT_TEMPS_LOOKAHEAD}', 
-                celsius_temps[temp_index], day_forecast
+                celsius_temps[temp_index], numerals_day_forecast
             )
         # Find all mph wind speeds and put them in a list.
         mph_winds: list[str] = (
