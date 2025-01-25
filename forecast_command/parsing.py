@@ -170,7 +170,7 @@ def format_forecasts(day_forecasts: list[str]) -> list[str]:
 
     Args:
         day_forecasts: A list of strings representing days and their 
-            forecasts, beginning with the most immediate forecast.
+            forecasts, beginning with the soonest forecast.
 
     Returns:
         day_forecasts: A list of reformatted strings.
@@ -193,7 +193,7 @@ def convert_forecasts(day_forecasts: list[str]) -> list[str]:
 
     Args:
         day_forecasts: A list of strings representing days and their 
-            forecasts, beginning with the most immediate forecast.
+            forecasts, beginning with the soonest forecast.
 
     Returns:
         formatted_forecasts: A list of strings with the temperatures 
