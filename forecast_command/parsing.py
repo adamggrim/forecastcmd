@@ -68,8 +68,11 @@ def number_words_to_numerals(text: str) -> str:
         'eight': '8', 
         'nine': '9', 
     }
-    for word, number in number_words.items():
-        text = re.sub(rf'\b{word}\b', number, text)
+    for number_word, number in number_words.items():
+        text = re.sub(rf'\b{number_word}\b', number, text)
+    return text
+
+
 def numerals_to_number_words(text: str) -> str:
     """
     Converts the numbers 0 and 0.5 in a string to number words.
