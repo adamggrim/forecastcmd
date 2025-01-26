@@ -46,13 +46,13 @@ def parse_args() -> str | None:
 
 def number_words_to_numerals(text: str) -> str:
     """
-    Converts number words in a string to number substrings.
+    Converts number words in a string to numeral substrings.
 
     Args:
         text: A string containing number words.
 
     Returns:
-        str: The input string with number words converted to number 
+        str: The input string with number words converted to numeral 
             substrings.
     """
     number_words: dict[str, str] = {
@@ -75,7 +75,7 @@ def number_words_to_numerals(text: str) -> str:
 
 def numerals_to_number_words(text: str) -> str:
     """
-    Converts the numbers 0 and 0.5 in a string to number words.
+    Converts the numerals 0 and 0.5 in a string to number words.
 
     Args:
         text: A string containing the numbers 1, 0 or 0.5.
