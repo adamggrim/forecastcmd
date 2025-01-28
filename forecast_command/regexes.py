@@ -8,11 +8,6 @@ class ParsingRegexes:
     Attributes:
         NOT_TEMPS_LOOKAHEAD: Regular expression lookahead pattern that 
             ignores numbers in the forecast that are not temperatures.
-        TEMPS_FINDER: Compiled regular expression object that captures 
-            numbers in a forecast that are temperatures.
-
-        WINDS_FINDER: Regular expression pattern that captures numbers 
-            in the forecast that are wind speeds.
 
         AM_PM_SPACE: Compiled regular expression object that captures 
             the boundary between a time value and a.m. or p.m.
@@ -20,22 +15,25 @@ class ParsingRegexes:
             a.m. and p.m. strings for reformatting.
         SPACES: Compiled regular expression object that captures 
             duplicate spaces and trailing whitespace.
+        TEMPS_FINDER: Compiled regular expression object that captures 
+            numbers in a forecast that are temperatures.
+        WINDS_FINDER: Regular expression pattern that captures numbers 
+            in the forecast that are wind speeds.
     """
     NOT_TEMPS_LOOKAHEAD: str = (
         r'(?!\spercent|%|\sa\.m\.|\sp\.m\.|\sto|\smph|\sand|\sof\san'
         r'|\sinch)'
     )
-    TEMPS_FINDER: re.Pattern[str] = re.compile(
-        r'-?\d{1,3}\b' + NOT_TEMPS_LOOKAHEAD
-    )
-
-    WINDS_FINDER: re.Pattern[str] = re.compile(
-        r'(\d{1,3})(?:\s+to\s+(\d{1,3}))?\smph'
-    )
 
     AM_PM_SPACE: re.Pattern[str] = re.compile(r'(?<=\d)(?=am|pm)')
     AM_PM_FORMAT: re.Pattern[str] = re.compile(r'(?<=\d\s(a|p))m\.?')
     SPACES: re.Pattern[str] = re.compile(r'(?<=\s)\s|\s+$')
+    TEMPS_FINDER: re.Pattern[str] = re.compile(
+        r'\b(-?\d{1,3})\b' + NOT_TEMPS_LOOKAHEAD
+    )
+    WINDS_FINDER: re.Pattern[str] = re.compile(
+        r'\b(\d{1,3})(?:\s+to\s+(\d{1,3}))?\smph'
+    )
 
 
 class ValidationRegexes:
