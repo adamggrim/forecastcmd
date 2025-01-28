@@ -108,17 +108,18 @@ def f2c(fahrenheit_temps: list[str]) -> list[str]:
 
 
 def mph_to_kmh_range(mph_range: str) -> str:
+def convert_mph_speeds(forecast_text: str) -> str:
     """
-    Converts a wind speed range string in miles per hour (mph) to 
-        kilometers per hour (km/h).
+    Converts a wind speed range in a forecast string from miles per 
+        hour (mph) to kilometers per hour (km/h).
 
     Args:
-        mph_speed: A wind speed range string in mph.
+        forecast_text: The forecast string with wind speeds in mph.
 
     Returns:
-        str: A wind speed range string in km/h.
+        str: The forecast string with wind speed in km/h.
     """
-    def mph_to_kmh(mph_speed: str) -> str:
+    def _mph_to_kmh(mph_speed: str) -> str:
         """
         Converts a wind speed string in miles per hour (mph) to 
             kilometers per hour (km/h).
@@ -132,24 +133,24 @@ def mph_to_kmh_range(mph_range: str) -> str:
         kmh_speed: int = round(int(mph_speed) * 1.60934)
         return str(kmh_speed)
     winds_match: re.Match[str] | None = re.search(
-        ParsingRegexes.WINDS_FINDER, mph_range
+        ParsingRegexes.WINDS_FINDER, forecast_text
     )
     if winds_match:
         lower_mph: str = winds_match.group(1)
-        lower_kmh: str = mph_to_kmh(lower_mph)
+        lower_kmh: str = _mph_to_kmh(lower_mph)
 
         if winds_match.group(2):
             upper_mph: str = winds_match.group(2)
-            upper_kmh: str = mph_to_kmh(upper_mph)
-            return mph_range.replace(
+            upper_kmh: str = _mph_to_kmh(upper_mph)
+            return forecast_text.replace(
                 winds_match.group(0), f'{lower_kmh} to {upper_kmh} km/h'
             )
 
-        return mph_range.replace(
+        return forecast_text.replace(
             winds_match.group(0), f'{lower_kmh} km/h'
         )
 
-    return mph_range
+    return forecast_text
 
 
 def parse_forecast(url: str) -> list[str]:
