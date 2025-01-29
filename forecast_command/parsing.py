@@ -131,23 +131,12 @@ def convert_mph_speeds(forecast_text: str) -> str:
         """
         kmh_speed: int = round(int(mph_speed) * 1.60934)
         return str(kmh_speed)
-    winds_match: re.Match[str] | None = re.search(
-        ParsingRegexes.WINDS_FINDER, forecast_text
+    kmh_forecast_text = re.sub(
+        ParsingRegexes.WINDS_FINDER, 
+        lambda match: _mph_to_kmh(match.group(1)), 
+        forecast_text
     )
-    if winds_match:
-        lower_mph: str = winds_match.group(1)
-        lower_kmh: str = _mph_to_kmh(lower_mph)
-
-        if winds_match.group(2):
-            upper_mph: str = winds_match.group(2)
-            upper_kmh: str = _mph_to_kmh(upper_mph)
-            return forecast_text.replace(
-                winds_match.group(0), f'{lower_kmh} to {upper_kmh} km/h'
-            )
-
-        return forecast_text.replace(
-            winds_match.group(0), f'{lower_kmh} km/h'
-        )
+    return re.sub(ParsingRegexes.MPH_FINDER, 'km/h', kmh_forecast_text)
 
     return forecast_text
 
