@@ -52,7 +52,7 @@ class ForecastLoop:
         """
         print_wrapped(ENTER_ZIP_PROMPT)
     
-    def _zip_input(self, temp_scale: TempScale) -> None:
+    def _process_zip_input(self, temp_scale: TempScale) -> None:
         """
         Prompts the user to enter a zip code, prints the forecast for 
             that zip code, and prompts the user to enter any other zip 
@@ -64,8 +64,8 @@ class ForecastLoop:
         """
         # While loop to deploy functions and get input from the user
         while True:
-            url: str = retrieve_url_from_zip()
-            print_forecast(url, temp_scale)
+            url: str = retrieve_url_from_zip(temp_scale)
+            print_forecast(url)
             print_wrapped(ANY_OTHER_ZIP_PROMPT)
     
     def fahrenheit(self) -> None:
@@ -84,7 +84,7 @@ class ForecastLoop:
         Args:
             self: The instance of the InputLoop class.
         """
-        self._zip_input(TempScale.CELSIUS)
+        self._process_zip_input(TempScale.CELSIUS)
 
 
 def print_padding() -> None:
