@@ -44,7 +44,7 @@ def parse_args() -> str | None:
         return None
 
 
-def number_words_to_numerals(text: str) -> str:
+def convert_number_words(text: str) -> str:
     """
     Converts number words in a string to numeral substrings.
 
@@ -73,7 +73,7 @@ def number_words_to_numerals(text: str) -> str:
     return text
 
 
-def numerals_to_number_words(text: str) -> str:
+def convert_numerals(text: str) -> str:
     """
     Converts the numerals 0 and 0.5 in a string to number words.
 
@@ -93,7 +93,7 @@ def numerals_to_number_words(text: str) -> str:
     return text
 
 
-def f2c(fahrenheit_temps: list[str]) -> list[str]:
+def convert_fahrenheit_temps(forecast_text: str) -> str:
     """
     Converts a list of Fahrenheit temperature strings to Celsius.
 
@@ -107,7 +107,6 @@ def f2c(fahrenheit_temps: list[str]) -> list[str]:
     return [str(round((int(temp) - 32) * 5 / 9)) for temp in fahrenheit_temps]
 
 
-def mph_to_kmh_range(mph_range: str) -> str:
 def convert_mph_speeds(forecast_text: str) -> str:
     """
     Converts a wind speed range in a forecast string from miles per 
@@ -178,58 +177,62 @@ def parse_forecast(url: str) -> list[str]:
         raise HTMLElementNotFoundError(
             'Forecast days not found for that zip code.'
         )
-    forecasts: list[str] = [
+    forecasts_text: list[str] = [
         forecast_text.get_text() 
         for forecast_text in soup.select('div[class *= "forecast-text"]')
     ]
-    if not forecasts:
+    if not forecasts_text:
         raise HTMLElementNotFoundError(
             'Forecast text not found for that zip code.'
         )
     # Reverse the order of the strings so the current day appears closest to 
     # the console prompt in the output.
     return [
-        day + ": " + forecast 
-        for day, forecast in zip(
-            days[::-1], forecasts[::-1]
+        day + ": " + forecast_text 
+        for day, forecast_text in zip(
+            days[::-1], forecasts_text[::-1]
         )
     ]
 
 
-def format_forecasts(day_forecasts: list[str]) -> list[str]:
+def format_forecasts(forecasts_text: list[str]) -> list[str]:
     """
     Formats the forecast list elements for printing.
 
     Args:
-        day_forecasts: A list of strings representing days and their 
+        forecasts_text: A list of strings representing days and their 
             forecasts, beginning with the soonest forecast.
 
     Returns:
-        day_forecasts: A list of reformatted strings.
+        forecasts_text: A list of reformatted strings.
     """
-    for index, day_forecast in enumerate(day_forecasts):
+    for index, forecast_text in enumerate(forecasts_text):
         # Remove extra spaces.
-        day_forecast: str = ParsingRegexes.SPACES.sub('', day_forecast)
+        forecast_text: str = ParsingRegexes.DUPLICATE_SPACES.sub(
+            '', forecast_text
+        )
         # Add a space before a.m. and p.m.
-        day_forecast = ParsingRegexes.AM_PM_SPACE.sub(' ', day_forecast)
+        forecast_text = ParsingRegexes.AM_PM_BOUNDARY.sub(' ', forecast_text)
         # Standardize the format of a.m. and p.m.
-        day_forecast = ParsingRegexes.AM_PM_FORMAT.sub('.m.', day_forecast)
-        day_forecasts[index] = day_forecast
-    return day_forecasts
+        forecast_text = ParsingRegexes.AM_PM_FORMAT.sub('.m.', forecast_text)
+        forecasts_text[index] = forecast_text
+    return forecasts_text
 
 
-def convert_forecasts(day_forecasts: list[str]) -> list[str]:
+def convert_forecasts(forecasts_text: list[str]) -> list[str]:
     """
-    Finds forecast temperatures and wind speeds and converts them to 
-        Celsius and kilometers per hour (km/h).
+    Finds forecast temperatures, wind speeds and accumulation totals 
+        and converts them to Celsius, kilometers per hour (km/h) and 
+        centimeters (cm).
 
     Args:
-        day_forecasts: A list of strings representing days and their 
+        forecasts_text: A list of strings representing days and their 
             forecasts, beginning with the soonest forecast.
 
     Returns:
         formatted_forecasts: A list of strings with the temperatures 
-            converted to Celsius and wind speeds converted to km/h.
+            converted to Celsius, wind speeds converted to km/h and 
+            accumulation totals converted to cm.
     """
     formatted_forecasts: list[str] = format_forecasts(day_forecasts)
     for index, day_forecast in enumerate(formatted_forecasts):
