@@ -23,9 +23,9 @@ class ValidationRegexes:
     Compiled regular expressions for validating input data.
 
     Attributes:
-        url: Compiled regular expression object that captures any 
+        URL: Compiled regular expression object that captures any 
             string that matches weather.gov's forecast URL syntax.
-        zip_code: Compiled regular expression object that captures any 
+        ZIP_CODE: Compiled regular expression object that captures any 
             string that is only a sequence of five digits.
     """
     URL: re.Pattern[str] = re.compile(

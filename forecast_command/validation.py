@@ -1,7 +1,8 @@
 from forecast_command.config import zip_codes_dict
 from forecast_command.constants import (
     CELSIUS_INPUTS, 
-    FAHRENHEIT_INPUTS)
+    FAHRENHEIT_INPUTS
+)
 from forecast_command.regexes import ValidationRegexes
 
 
