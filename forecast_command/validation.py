@@ -44,7 +44,7 @@ class ZipCodeNotFoundError(Exception):
         given JSON file."""
 
 
-def validate_temp_scale(temp_scale: str) -> None:
+def validate_temp_scale(temp_scale_input: str) -> None:
     """
     Validates the temperature scale string by checking whether the 
         string is in the sets CELSIUS_INPUTS or FAHRENHEIT_INPUTS.
@@ -52,9 +52,9 @@ def validate_temp_scale(temp_scale: str) -> None:
     Args:
         temp_scale: A string representing a temperature scale.
     """
-    if temp_scale == '':
+    if temp_scale_input == '':
         raise NoTempScaleError('No temperature scale entered.')
-    elif (temp_scale not in CELSIUS_INPUTS and temp_scale not in 
+    elif (temp_scale_input not in CELSIUS_INPUTS and temp_scale_input not in 
           FAHRENHEIT_INPUTS):
         raise InvalidTempScaleError('Not a valid temperature scale.')
 

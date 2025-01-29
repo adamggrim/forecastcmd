@@ -121,20 +121,20 @@ def prompt_for_temp_scale() -> str:
     Requests a valid temperature scale.
 
     Returns:
-        temp_scale: A string representing Fahrenheit or Celsius.
+        str: A string representing Fahrenheit or Celsius.
     """
     while True:
-        temp_scale: str = input().strip().lower()
-        if temp_scale in (NO_INPUTS | EXIT_INPUTS):
+        temp_scale_input: str = input().strip().lower()
+        if temp_scale_input in (NO_INPUTS | EXIT_INPUTS):
             program_exit()
         else:
             try:
-                validate_temp_scale(temp_scale)
+                validate_temp_scale(temp_scale_input)
             except (NoTempScaleError, InvalidTempScaleError) as e:
                 print_wrapped(str(e))
                 print_wrapped(ENTER_VALID_TEMP_SCALE_PROMPT)
             else:
-                return temp_scale
+                return temp_scale_input
 
 
 def retrieve_url_from_zip() -> str:
