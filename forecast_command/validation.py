@@ -59,22 +59,22 @@ def validate_temp_scale(temp_scale_input: str) -> None:
         raise InvalidTempScaleError('Not a valid temperature scale.')
 
 
-def validate_zip_code(zip_code: str) -> None:
+def validate_zip_code(zip_code_input: str) -> None:
     """
     Validates the zip code string passed into the function by checking 
         whether the string is only a sequence of five digits.
 
     Args:
-        zip_code: A string representing a zip code.
+        zip_code_input: A string representing a zip code.
     """
-    if zip_code == '':
+    if zip_code_input == '':
         raise NoZipCodeError('No zip code entered.')
-    elif not ValidationRegexes.ZIP_CODE.match(zip_code):
+    elif not ValidationRegexes.ZIP_CODE.match(zip_code_input):
         raise InvalidZipCodeFormatError('Invalid zip code format.')
-    elif zip_code not in zip_codes_dict:
+    elif zip_code_input not in zip_codes_dict:
         raise ZipCodeNotFoundError('Zip code not found.')
-    elif zip_codes_dict[zip_code] == '':
-        raise NoDataForZipCodeError(f'No data available for {zip_code}.')
+    elif zip_codes_dict[zip_code_input] == '':
+        raise NoDataForZipCodeError(f'No data available for {zip_code_input}.')
 
 
 def validate_url(url: str) -> None:

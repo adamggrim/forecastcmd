@@ -157,10 +157,10 @@ def retrieve_url_from_zip() -> str:
         print_wrapped(str(e))
         print_wrapped(prompt)
     while True:
-        zip_code = input().strip().lower()
-        if zip_code in (NO_INPUTS | EXIT_INPUTS):
+        zip_code_input: str = input().strip().lower()
+        if zip_code_input in (NO_INPUTS | EXIT_INPUTS):
             program_exit()
-        elif zip_code in YES_INPUTS:
+        elif zip_code_input in YES_INPUTS:
             print_wrapped(ENTER_VALID_ZIP_PROMPT)
         else:
             try:
