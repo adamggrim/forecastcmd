@@ -184,7 +184,7 @@ def convert_inches(forecast_text: str) -> str:
         lambda match: _inches_to_cm(match.group(1)), 
         forecast_text
     )
-    return re.sub(r'inch(es)?', 'cm', cm_forecast_text)
+    return re.sub(ParsingRegexes.INCHES_FINDER, 'centimeters', cm_forecast_text)
 
 
 def parse_forecast(url: str) -> list[str]:
@@ -274,6 +274,7 @@ def convert_forecasts(forecasts_text: list[str]) -> list[str]:
         numerals_forecast: str = convert_number_words(formatted_forecast)
         celsius_forecast: str = convert_fahrenheit_temps(numerals_forecast)
         kmh_forecast: str = convert_mph_speeds(celsius_forecast)
-        number_words_forecast: str = convert_numerals(kmh_forecast)
+        cm_forecast: str = convert_inches(kmh_forecast)
+        number_words_forecast: str = convert_numerals(cm_forecast)
         formatted_forecasts[index] = number_words_forecast
     return formatted_forecasts
