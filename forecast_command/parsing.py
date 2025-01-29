@@ -59,6 +59,8 @@ def convert_number_words(text: str) -> str:
         'zero': '0', 
         'a tenth of an': '0.1', 
         'a half': '0.5', 
+        'half of an': '0.5', 
+        'a quarter of an': '0.25', 
         'one': '1', 
         'two': '2', 
         'three': '3', 
