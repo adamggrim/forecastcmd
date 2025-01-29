@@ -19,6 +19,9 @@ ANY_OTHER_ZIP_PROMPT: str = 'Any other zip code? (5 digits):'
 # Set of strings for selecting Celsius
 CELSIUS_INPUTS: set[str] = {'celsius', 'c'}
 
+# String appended to a URL for Celsius forecasts
+CELSIUS_URL_SUFFIX: str = '&FcstType=text&unit=1'
+
 # String printed to prompt the user to enter a temperature scale
 ENTER_TEMP_SCALE_PROMPT: str = (
     'Enter a temperature scale (Celsius [C] or Fahrenheit [F]):'
