@@ -138,7 +138,36 @@ def convert_mph_speeds(forecast_text: str) -> str:
     )
     return re.sub(ParsingRegexes.MPH_FINDER, 'km/h', kmh_forecast_text)
 
-    return forecast_text
+
+def convert_inches(forecast_text: str) -> str:
+    """
+    Converts an accumulation range in a forecast string from inches to 
+        centimeters.
+
+    Args:
+        forecast_text: The forecast string with accumulation in inches.
+
+    Returns:
+        str: The forecast string with accumulation in cm.
+    """
+    def _inches_to_cm(inches_length: str) -> str:
+        """
+        Converts a length string in inches to centimeters (cm).
+
+        Args:
+            inches_length: An accumulation string in inches.
+
+        Returns:
+            str: An accumulation string in cm.
+        """
+        cm_length: int = round(float(inches_length) * 2.54)
+        return str(cm_length)
+    cm_forecast_text = re.sub(
+        ParsingRegexes.ACCUMULATION_FINDER, 
+        lambda match: _inches_to_cm(match.group(1)), 
+        forecast_text
+    )
+    return re.sub(r'inch(es)?', 'cm', cm_forecast_text)
 
 
 def parse_forecast(url: str) -> list[str]:
