@@ -56,8 +56,9 @@ def convert_number_words(text: str) -> str:
             substrings.
     """
     number_words: dict[str, str] = {
-        'a half': '0.5', 
         'zero': '0', 
+        'a tenth of an': '0.1', 
+        'a half': '0.5', 
         'one': '1', 
         'two': '2', 
         'three': '3', 
@@ -66,7 +67,7 @@ def convert_number_words(text: str) -> str:
         'six': '6', 
         'seven': '7', 
         'eight': '8', 
-        'nine': '9', 
+        'nine': '9'
     }
     for number_word, number in number_words.items():
         text = re.sub(rf'\b{number_word}\b', number, text)
@@ -85,8 +86,9 @@ def convert_numerals(text: str) -> str:
             to number words.
     """
     numbers_words: dict[str, str] = {
-        '0.5': 'a half', 
         '0': 'zero', 
+        '0.1': 'a tenth of a', 
+        '0.5': 'a half'
     }
     for number, number_word in numbers_words.items():
         text = re.sub(rf'\b{number}\b', number_word, text)
