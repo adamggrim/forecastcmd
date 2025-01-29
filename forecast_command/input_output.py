@@ -46,7 +46,7 @@ class ForecastLoop:
         """
         Initializes a new InputLoop instance by prompting the user to 
             enter a zip code.
-        
+
         Args:
             self: The instance of the InputLoop class.
         """
@@ -57,7 +57,7 @@ class ForecastLoop:
         Prompts the user to enter a zip code, prints the forecast for 
             that zip code, and prompts the user to enter any other zip 
             code.
-        
+
         Args:
             temp_scale (TempScale): The temperature scale for the 
                 forecast.
@@ -71,12 +71,12 @@ class ForecastLoop:
     def fahrenheit(self) -> None:
         """
         Runs the input loop for printing forecasts in Fahrenheit.
-        
+
         Args:
             self: The instance of the InputLoop class.
         """
-        self._zip_input(TempScale.FAHRENHEIT)
-    
+        self._process_zip_input(TempScale.FAHRENHEIT)
+
     def celsius(self) -> None:
         """
         Runs the input loop for printing forecasts in Celsius.
@@ -96,7 +96,7 @@ def print_wrapped(text: str) -> None:
     """
     Wraps printing based on the width of the terminal and adds a 
         newline character to the start of the string.
-    
+
     Args:
         text: The string to print.
     """
@@ -141,7 +141,7 @@ def retrieve_url_from_zip() -> str:
     """
     Requests a valid zip code that matches a zip code in the JSON file 
         and returns the matching URL.
-    
+
     Returns:
         url: The url for the zip code input.
     """
@@ -185,7 +185,7 @@ def retrieve_url_from_zip() -> str:
 def print_forecast(url: str, temp_scale: TempScale) -> None:
     """
     Prints forecast data from a given URL to the console.
-    
+
     Args:
         url: The URL for accessing weather data.
         temp_scale: The temperature scale to apply to the forecast.

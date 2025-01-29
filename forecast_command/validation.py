@@ -48,7 +48,7 @@ def validate_temp_scale(temp_scale: str) -> None:
     """
     Validates the temperature scale string by checking whether the 
         string is in the sets CELSIUS_INPUTS or FAHRENHEIT_INPUTS.
-    
+
     Args:
         temp_scale: A string representing a temperature scale.
     """
@@ -81,7 +81,7 @@ def validate_url(url: str) -> None:
     """
     Validates the URL string passed into the function by checking 
         whether the string matches weather.gov's forecast URL syntax.
-    
+
     Args:
         url: A string representing a URL.
     """
