@@ -6,6 +6,7 @@ import requests
 from forecast_command.config import zip_codes_dict
 from forecast_command.constants import (
     ANY_OTHER_ZIP_PROMPT, 
+    CELSIUS_URL_SUFFIX, 
     ENTER_VALID_TEMP_SCALE_PROMPT, 
     ENTER_VALID_ZIP_PROMPT, 
     ENTER_ZIP_PROMPT, 
@@ -16,7 +17,6 @@ from forecast_command.constants import (
 )
 from forecast_command.enums import TempScale
 from forecast_command.parsing import (
-    convert_forecasts, 
     format_forecasts, 
     parse_forecast
 )
@@ -137,10 +137,14 @@ def prompt_for_temp_scale() -> str:
                 return temp_scale_input
 
 
-def retrieve_url_from_zip() -> str:
+def retrieve_url_from_zip(temp_scale: TempScale) -> str:
     """
     Requests a valid zip code that matches a zip code in the JSON file 
         and returns the matching URL.
+
+    Args:
+        url: The URL for accessing weather data.
+        temp_scale: The temperature scale to apply to the forecast.
 
     Returns:
         url: The url for the zip code input.
@@ -164,8 +168,11 @@ def retrieve_url_from_zip() -> str:
             print_wrapped(ENTER_VALID_ZIP_PROMPT)
         else:
             try:
-                validate_zip_code(zip_code)
-                url: str = zip_codes_dict[zip_code]
+                validate_zip_code(zip_code_input)
+                if temp_scale == TempScale.CELSIUS:
+                    url: str = zip_codes_dict[zip_code_input] + CELSIUS_URL_SUFFIX
+                else:
+                    url: str = zip_codes_dict[zip_code_input]
                 validate_url(url)
             except (
                 NoZipCodeError, 
@@ -182,20 +189,16 @@ def retrieve_url_from_zip() -> str:
                 return url
 
 
-def print_forecast(url: str, temp_scale: TempScale) -> None:
+def print_forecast(url: str) -> None:
     """
     Prints forecast data from a given URL to the console.
 
     Args:
         url: The URL for accessing weather data.
-        temp_scale: The temperature scale to apply to the forecast.
     """
     try:
         day_forecasts: list[str] = parse_forecast(url)
-        if temp_scale == TempScale.CELSIUS:
-            formatted_forecasts: list[str] = convert_forecasts(day_forecasts)
-        else:
-            formatted_forecasts: list[str] = format_forecasts(day_forecasts)
+        formatted_forecasts: list[str] = format_forecasts(day_forecasts)
         for day_forecast in formatted_forecasts:
             print_wrapped(day_forecast)
     except requests.exceptions.ConnectionError:
