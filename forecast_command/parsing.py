@@ -97,16 +97,31 @@ def convert_numerals(text: str) -> str:
 
 def convert_fahrenheit_temps(forecast_text: str) -> str:
     """
-    Converts a list of Fahrenheit temperature strings to Celsius.
+    Converts Fahrenheit temperatures in a forecast string to Celsius.
 
     Args:
-        fahrenheit_temps: A list of Fahrenheit temperature 
-            strings.
+        forecast_text: The forecast string with Fahrenheit temperatures.
 
     Returns:
-        list[str]: A list of Celsius temperature strings.
+        str: The forecast string with Celsius temperatures.
     """
-    return [str(round((int(temp) - 32) * 5 / 9)) for temp in fahrenheit_temps]
+    def _f2c(fahrenheit_temp: str) -> str:
+        """
+        Converts a Fahrenheit temperature string to Celsius.
+
+        Args:
+            fahrenheit_temps: A Fahrenheit temperature string.
+
+        Returns:
+            str: A Celsius temperature string.
+        """
+        celsius_temp: int = round((int(fahrenheit_temp) - 32) * 5 / 9)
+        return str(celsius_temp)
+    return re.sub(
+        ParsingRegexes.TEMPS_FINDER, 
+        lambda match: _f2c(match.group(1)), 
+        forecast_text
+    )
 
 
 def convert_mph_speeds(forecast_text: str) -> str:
