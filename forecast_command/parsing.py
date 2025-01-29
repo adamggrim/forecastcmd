@@ -252,30 +252,11 @@ def convert_forecasts(forecasts_text: list[str]) -> list[str]:
             converted to Celsius, wind speeds converted to km/h and 
             accumulation totals converted to cm.
     """
-    formatted_forecasts: list[str] = format_forecasts(day_forecasts)
-    for index, day_forecast in enumerate(formatted_forecasts):
-        numerals_day_forecast = number_words_to_numerals(day_forecast)
-        # Find all Fahrenheit temperatures and put them in a list.
-        fahrenheit_temps: list[str] = (
-            ParsingRegexes.TEMPS_FINDER.findall(numerals_day_forecast)
-        )
-        # Convert the list of Fahrenheit temperatures to Celsius.
-        celsius_temps: list[str] = f2c(fahrenheit_temps)
-        # Loop over Fahrenheit temperatures and substitute with Celsius.
-        for temp_index, temp in enumerate(fahrenheit_temps):
-            numerals_day_forecast: str = re.sub(
-                rf'-?{temp}\b{ParsingRegexes.NOT_TEMPS_LOOKAHEAD}', 
-                celsius_temps[temp_index], numerals_day_forecast
-            )
-        # Find all mph wind speeds and put them in a list.
-        mph_winds: list[str] = (
-            ParsingRegexes.WIND_FINDER.findall(day_forecast)
-        )
-        kmh_winds: list[str] = mph_to_kmh(mph_winds)
-        for wind_index, mph_wind in enumerate(mph_winds):
-            day_forecast: str = re.sub(
-                rf'{mph_wind}{ParsingRegexes.WIND_LOOKAHEAD}', 
-                kmh_winds[wind_index], day_forecast
-            )
-        formatted_forecasts[index] = day_forecast
+    formatted_forecasts: list[str] = format_forecasts(forecasts_text)
+    for index, formatted_forecast in enumerate(formatted_forecasts):
+        numerals_forecast: str = convert_number_words(formatted_forecast)
+        celsius_forecast: str = convert_fahrenheit_temps(numerals_forecast)
+        kmh_forecast: str = convert_mph_speeds(celsius_forecast)
+        number_words_forecast: str = convert_numerals(kmh_forecast)
+        formatted_forecasts[index] = number_words_forecast
     return formatted_forecasts
