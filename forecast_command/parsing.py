@@ -91,7 +91,7 @@ def convert_numerals(text: str) -> str:
         '0.5': 'a half'
     }
     for number, number_word in numbers_words.items():
-        text = re.sub(rf'\b{number}\b', number_word, text)
+        text = re.sub(rf'\b{number}\b(?!\.\d)', number_word, text)
     return text
 
 
